@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import FlipPage from "react-flip-page";
 
-const BookPageComponent = () => {
+const MenuBook = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = 5;
 
@@ -21,14 +21,15 @@ const BookPageComponent = () => {
   ];
 
   return (
-    <div className="book-container w-screen h-screen">
+    <div className="book-container w-full h-[70vh] p-2">
       <FlipPage
         orientation="horizontal"
-        className="book w-screen h-screen"
+        className="book w-[50vw] h-[30px]"
+        style={{ width: "70vw", height: "100vh" }}
         responsive
         showHint={false}
         onPageChange={(page) => setCurrentPage(page - 1)}
-        onClickCorner={(direction) => handlePageTurn(direction)}
+        onClick={(direction) => handlePageTurn(direction)}
       >
         {pageImages.map((image, index) => (
           <div
@@ -36,9 +37,10 @@ const BookPageComponent = () => {
             className="page w-screen h-screen"
             style={{
               backgroundImage: `url(${image})`,
-              backgroundSize: "cover",
+              backgroundSize: "contain",
+              width: "100%",
+              height: "100%",
               backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
             }}
           />
         ))}
@@ -47,4 +49,4 @@ const BookPageComponent = () => {
   );
 };
 
-export default BookPageComponent;
+export default MenuBook;

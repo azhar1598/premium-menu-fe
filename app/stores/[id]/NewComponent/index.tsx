@@ -4,10 +4,12 @@ import ContactSection from "@/components/ContactSection";
 import ImageCarousel from "@/components/ImageCarousel";
 import {
   ActionIcon,
+  Badge,
   Box,
   Button,
   Flex,
   Group,
+  Indicator,
   Stack,
   Text,
 } from "@mantine/core";
@@ -22,6 +24,7 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import BookPageComponent from "./MenuBook";
 
 function NewComponent({ storeDetail }) {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -61,7 +64,7 @@ function NewComponent({ storeDetail }) {
 
   return (
     <Stack>
-      <div className="relative h-[170vh] w-screen bg-image">
+      <div className="relative h-[200vh] w-screen bg-image">
         {/* <img
           src="/assets/auth/rest2.jpg"
           alt="Background"
@@ -82,22 +85,32 @@ function NewComponent({ storeDetail }) {
           </div>
 
           {/* Restaurant Name */}
-          <h1 className="text-lg font-bold text-white">Raghavendra Tiffins</h1>
+
+          <Indicator color="green" position="top-end" processing>
+            <h1 className="text-lg font-bold text-white px-2">
+              Raghavendra Tiffins
+            </h1>
+          </Indicator>
+
           <p className="text-gray-400 -mt-3">Tastes Better</p>
 
-          <button
+          {/* <Badge
             style={{
-              backgroundColor: "#213d4c",
+              backgroundColor: "green",
               color: "white",
               padding: "6px 2px 6px 2px",
               borderRadius: "5px",
-              width: "200px",
+              height: "20px",
+              width: "100px",
               fontWeight: 550,
             }}
+            fs={"8px"}
             onClick={() => setShowCarousel(true)}
           >
-            View Menu
-          </button>
+            STORE OPEN
+          </Badge> */}
+
+          <BookPageComponent />
 
           {/* Business Hours */}
           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w-80">
@@ -116,8 +129,9 @@ function NewComponent({ storeDetail }) {
 
           <Stack
             gap={0}
-            mt={220}
-            className="flex flex-col items-center justify-center  w-full bg-black/70 backdrop-blur-xs"
+            // mt={1020}
+            style={{ marginTop: "500px" }}
+            className="flex flex-col items-center justify-center absolute bottom-0 w-full bg-black/70 backdrop-blur-xs"
           >
             <Flex
               direction="column"
