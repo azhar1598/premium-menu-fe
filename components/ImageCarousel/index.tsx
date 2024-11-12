@@ -6,16 +6,16 @@ import { useDisclosure } from "@mantine/hooks";
 import { Carousel } from "@mantine/carousel";
 import { Image } from "@mantine/core";
 
-const ImageCarousel = ({ images, currentIndex, onClose }) => {
+const ImageCarousel = ({ images, currentIndex, onClose }: any) => {
   const [activeIndex, setActiveIndex] = useState(currentIndex);
   const [opened, { open, close }] = useDisclosure(false);
 
   const goToNext = () => {
-    setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setActiveIndex((prev: any) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   const goToPrev = () => {
-    setActiveIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setActiveIndex((prev: any) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   // Swipe handlers
@@ -39,7 +39,7 @@ const ImageCarousel = ({ images, currentIndex, onClose }) => {
       dragFree
       slideGap="md"
     >
-      {images.map((image, index: number) => (
+      {images.map((image: string, index: number) => (
         <Carousel.Slide key={index} w={"100%"}>
           <div className="bg-red-300 ">
             {" "}

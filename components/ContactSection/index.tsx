@@ -19,7 +19,7 @@ import {
   IconInfoSquare,
 } from "@tabler/icons-react";
 
-const ContactSection = ({ storeDetail }) => {
+const ContactSection = ({ storeDetail }: any) => {
   const formatTime = (time: string) => {
     return new Date(`2024-01-01T${time}`).toLocaleTimeString("en-US", {
       hour: "numeric",
@@ -41,7 +41,7 @@ const ContactSection = ({ storeDetail }) => {
       }}
     >
       <Box mt="xl" p={"lg"}>
-        <Text fw={600} size="lg" align="left" color="gray.3" mb="md">
+        <Text fw={600} size="lg" ta="left" color="gray.3" mb="md">
           Business Hours
         </Text>
         <Group justify="flex-start" gap="sm">
@@ -81,10 +81,10 @@ const ContactSection = ({ storeDetail }) => {
           >
             <IconInfoSquare color="#ff8000" stroke={2} />
           </Box>
-          <Text size="lg" fw={600} color="white" align="left">
+          <Text size="lg" fw={600} color="white" ta="left">
             About Us
           </Text>
-          <Text size="sm" color="gray.3" align="left" w="300px">
+          <Text size="sm" color="gray.3" ta="left" w="300px">
             {storeDetail?.description}
           </Text>
         </Group>
@@ -100,10 +100,10 @@ const ContactSection = ({ storeDetail }) => {
           >
             <IconMapPin size={24} color="#ff8000" stroke={1.5} />
           </Box>
-          <Text size="lg" fw={600} color="white" align="left">
+          <Text size="lg" fw={600} color="white" ta="left">
             Our Location
           </Text>
-          <Text size="sm" color="gray.3" align="left" w="300px">
+          <Text size="sm" color="gray.3" ta="left" w="300px">
             {storeDetail?.address}, {storeDetail?.city},
             <br />
             {storeDetail?.state}, {storeDetail?.pincode}.
@@ -115,8 +115,8 @@ const ContactSection = ({ storeDetail }) => {
           <Group
             gap="xs"
             component="a"
-            href="mailto:ts.cafesouth.av@email.com"
-            sx={(theme) => ({
+            // href="mailto:ts.cafesouth.av@email.com"
+            style={(theme) => ({
               color: theme.colors.gray[4],
               textDecoration: "none",
               transition: "color 200ms ease",
@@ -131,8 +131,8 @@ const ContactSection = ({ storeDetail }) => {
           <Group
             gap="xs"
             component="a"
-            href="tel:+6531192890"
-            sx={(theme) => ({
+            // href="tel:+6531192890"
+            style={(theme) => ({
               color: theme.colors.gray[4],
               textDecoration: "none",
               transition: "color 200ms ease",
@@ -148,7 +148,7 @@ const ContactSection = ({ storeDetail }) => {
 
         {/* Social Media Section */}
         <Stack align="center" gap="md">
-          <Text color="gray.5" size="sm" weight={500}>
+          <Text color="gray.5" size="sm" fw={500}>
             Follow Us On
           </Text>
           <Group gap="lg">
@@ -164,7 +164,7 @@ const ContactSection = ({ storeDetail }) => {
                 variant="filled"
                 component="a"
                 href={social.link}
-                sx={(theme) => ({
+                style={(theme) => ({
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   color: theme.colors.gray[3],
                   "&:hover": {
