@@ -61,18 +61,18 @@ const menuItems = [
   },
 ];
 
-const RestaurantMenu = () => {
+const RestaurantMenuCard = () => {
   return (
-    <div className="min-h-screen bg-zinc-900 p-8">
+    <div className="min-h-screen bg-zinc-900 p-8 mx-2">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="flex justify-between items-start mb-8">
-          <div>
-            <h1 className="text-6xl font-bold text-orange-500">FOOD</h1>
-            <h2 className="text-6xl font-bold text-white -mt-2">MENU</h2>
+          <div className="flex items-center gap-2">
+            <h1 className="text-4xl font-bold text-red-500">FOOD</h1>
+            <h2 className="text-4xl font-bold text-white ">MENU</h2>
           </div>
           <div className="w-24">
-            <div className="bg-red-800 p-3 rounded-sm text-white text-center">
+            {/* <div className="bg-red-800 p-3 rounded-sm text-white text-center">
               <div className="border-b border-red-600 pb-1">
                 <img
                   src="/api/placeholder/30/30"
@@ -81,7 +81,7 @@ const RestaurantMenu = () => {
                 />
                 Fradel and Spies Restaurant
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -128,4 +128,4 @@ const RestaurantMenu = () => {
   );
 };
 
-export default RestaurantMenu;
+export default RestaurantMenuCard;

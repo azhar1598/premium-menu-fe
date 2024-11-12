@@ -28,6 +28,8 @@ import BookPageComponent from "./MenuBook";
 import MenuBookModal from "./MenuBook";
 import { useDisclosure } from "@mantine/hooks";
 import MenuImage from "../../../../public/assets/auth/menu.png";
+import RestaurantMenuCard from "@/app/new-page/RestaurantMenu";
+import RestaurantMenu2 from "@/app/new-page/RestautrantMenu2";
 
 function NewComponent({ storeDetail }: any) {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -111,11 +113,13 @@ function NewComponent({ storeDetail }: any) {
           </Badge> */}
 
           {/* <MenuBookModal opened={opened} close={close} /> */}
-          <ImageCarousel
+          {/* <ImageCarousel
             images={storeInfo?.menuImages}
             currentIndex={selectedImageIndex}
             onClose={() => setShowCarousel(false)}
-          />
+          /> */}
+          {/* <RestaurantMenuCard /> */}
+          <RestaurantMenu2 />
 
           <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w">
             <h2 className="text-lg font-semibold text-white mb-3 text-center">
