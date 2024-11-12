@@ -1,5 +1,6 @@
 // app/stores/[id]/page.tsx
 import HomeComponent from "./HomeComponent";
+import NewComponent from "./NewComponent";
 
 export default async function StorePage({ params }: any) {
   const { id } = await params;
@@ -7,17 +8,21 @@ export default async function StorePage({ params }: any) {
 
   return (
     <div>
-      <HomeComponent storeDetail={storeDetail?.data} />
+      {/* <HomeComponent storeDetail={storeDetail?.data} /> */}
+      <NewComponent storeDetail={storeDetail?.data} />
     </div>
   );
 }
 
 async function getStoreDetail(id: string) {
-  const response = await fetch(`http://localhost:3001/v1/public/stores/${id}`, {
-    next: {
-      revalidate: 60,
-    },
-  });
+  const response = await fetch(
+    `https://digi-be.sourcestation.net/v1/public/stores/${id}`,
+    {
+      next: {
+        revalidate: 60,
+      },
+    }
+  );
 
   if (!response.ok) {
     throw new Error("Failed to fetch store");

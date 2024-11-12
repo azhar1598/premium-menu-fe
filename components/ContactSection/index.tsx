@@ -29,9 +29,9 @@ const ContactSection = ({ storeDetail }) => {
   };
   return (
     <Paper
-      mt={80}
+      // mt={80}
       radius="md"
-      w={"100vw"}
+      // w={"100vw"}
       //   p={"lg"}
       bg="rgba(0, 0, 0, 0.1)"
       //   bg={"black"}
@@ -44,21 +44,27 @@ const ContactSection = ({ storeDetail }) => {
         <Text fw={600} size="lg" align="left" color="gray.3" mb="md">
           Business Hours
         </Text>
-        <Group justify="flex-start" gap="lg">
+        <Group justify="flex-start" gap="sm">
           {storeDetail?.businessHours.map((hours: any, index: number) => (
             <Badge
               key={index}
-              size="lg"
+              size="md"
               radius="sm"
               variant="dot"
               color={
-                storeDetail?.websiteTheme?.primaryColor === "#fab005"
-                  ? "yellow"
-                  : "blue"
+                "white"
+                // storeDetail?.websiteTheme?.primaryColor === "#fab005"
+                //   ? "yellow"
+                //   : "blue"
               }
+              style={{ border: "none" }}
+              bg={"transparent"}
             >
-              {hours.day}: {formatTime(hours.openTime)} -{" "}
-              {formatTime(hours.closeTime)}
+              <p className="text-white">
+                {" "}
+                {hours.day}: {formatTime(hours.openTime)} -{" "}
+                {formatTime(hours.closeTime)}
+              </p>
             </Badge>
           ))}
         </Group>
