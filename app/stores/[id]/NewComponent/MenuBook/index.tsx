@@ -1,8 +1,8 @@
-"use client";
 import React, { useState } from "react";
+import { Modal, Button } from "@mantine/core";
 import FlipPage from "react-flip-page";
 
-const MenuBook = () => {
+const MenuBookModal = ({ opened, close }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const totalPages = 5;
 
@@ -21,32 +21,51 @@ const MenuBook = () => {
   ];
 
   return (
-    <div className="book-container w-full h-[70vh] p-2">
-      <FlipPage
-        orientation="horizontal"
-        className="book w-[50vw] h-[30px]"
-        style={{ width: "70vw", height: "100vh" }}
-        responsive
-        showHint={false}
-        onPageChange={(page) => setCurrentPage(page - 1)}
-        onClick={(direction) => handlePageTurn(direction)}
+    <>
+      <Modal
+        opened={opened}
+        onClose={close}
+        size="xl"
+        bg={"red"}
+        padding={0}
+        centered
+        fullScreen
+        transitionProps={{ transition: "rotate-left", duration: 200 }}
+        // withCloseButton={false}
       >
-        {pageImages.map((image, index) => (
-          <div
-            key={index}
-            className="page w-screen h-screen"
-            style={{
-              backgroundImage: `url(${image})`,
-              backgroundSize: "contain",
-              width: "100%",
-              height: "100%",
-              backgroundPosition: "center",
-            }}
-          />
-        ))}
-      </FlipPage>
-    </div>
+        <div className="book-container bg-black p-2 h-[100vh] w-[100vw] flex items-center justify-center">
+          <FlipPage
+            orientation="horizontal"
+            className="book"
+            // responsive
+            // width={300}
+            // height={1000}
+            showHint={false}
+            onPageChange={(page) => setCurrentPage(page - 1)}
+            onClick={(direction) => handlePageTurn(direction)}
+          >
+            {pageImages.map((image, index) => (
+              <div
+                key={index}
+                className="page"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginTop: "20px",
+                  justifyContent: "center",
+                  backgroundImage: `url(${image})`,
+                  backgroundSize: "contain",
+                  backgroundRepeat: "no-repeat",
+                  height: "100vh",
+                  width: "100%",
+                }}
+              />
+            ))}
+          </FlipPage>
+        </div>
+      </Modal>
+    </>
   );
 };
 
-export default MenuBook;
+export default MenuBookModal;

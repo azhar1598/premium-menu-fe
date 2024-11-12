@@ -25,6 +25,9 @@ import {
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import BookPageComponent from "./MenuBook";
+import MenuBookModal from "./MenuBook";
+import { useDisclosure } from "@mantine/hooks";
+import MenuImage from "../../../../public/assets/auth/menu.png";
 
 function NewComponent({ storeDetail }) {
   const [showCarousel, setShowCarousel] = useState(false);
@@ -64,7 +67,7 @@ function NewComponent({ storeDetail }) {
 
   return (
     <Stack>
-      <div className="relative h-[200vh] w-screen bg-image">
+      <div className="relative w-screen bg-image  bg-black/70  backdrop-blur-sm">
         {/* <img
           src="/assets/auth/rest2.jpg"
           alt="Background"
@@ -72,22 +75,19 @@ function NewComponent({ storeDetail }) {
         / */}
 
         {/* Black Overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* <div className="absolute inset-0 bg-black/60" /> */}
+        {/* <div className="absolute inset-0 bg-black/10 backdrop-blur-sm"></div> */}
 
-        <Stack
-          align="center"
-          pt={20}
-          className="absolute bottom-0 z-10 h-full w-full"
-        >
+        <Stack align="center" pt={20}>
           {/* Logo */}
-          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center ">
             <span className="text-xl font-bold text-white">RT</span>
           </div>
 
           {/* Restaurant Name */}
 
           <Indicator color="green" position="top-end" processing>
-            <h1 className="text-lg font-bold text-white px-2">
+            <h1 className="text-lg font-bold text-white px-2 ">
               Raghavendra Tiffins
             </h1>
           </Indicator>
@@ -110,10 +110,14 @@ function NewComponent({ storeDetail }) {
             STORE OPEN
           </Badge> */}
 
-          <BookPageComponent />
+          {/* <MenuBookModal opened={opened} close={close} /> */}
+          <ImageCarousel
+            images={storeInfo?.menuImages}
+            currentIndex={selectedImageIndex}
+            onClose={() => setShowCarousel(false)}
+          />
 
-          {/* Business Hours */}
-          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w-80">
+          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w">
             <h2 className="text-lg font-semibold text-white mb-3 text-center">
               Business Hours
             </h2>
@@ -129,9 +133,7 @@ function NewComponent({ storeDetail }) {
 
           <Stack
             gap={0}
-            // mt={1020}
-            style={{ marginTop: "500px" }}
-            className="flex flex-col items-center justify-center absolute bottom-0 w-full bg-black/70 backdrop-blur-xs"
+            className="flex flex-col items-center justify-center  bottom-0 w-full bg-black/60  backdrop-blur-sm"
           >
             <Flex
               direction="column"
@@ -270,13 +272,9 @@ function NewComponent({ storeDetail }) {
           {/* <ContactSection storeDetail={storeDetail} /> */}
         </Stack>
       </div>
-      {showCarousel && (
-        <ImageCarousel
-          images={storeInfo?.menuImages}
-          currentIndex={selectedImageIndex}
-          onClose={() => setShowCarousel(false)}
-        />
-      )}
+      {/* {showCarousel && ( */}
+
+      {/* )} */}
     </Stack>
   );
 }

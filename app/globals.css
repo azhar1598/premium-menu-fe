@@ -68,8 +68,35 @@ body {
   }
 }
 .bg-image {
-  background-image: url("/assets/auth/rest2.jpg");
+  background-image: url("/assets/auth/rest1.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.book-container {
+  background-repeat: no-repeat !important;
+  width: 100vw;
+  height: 40%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.bg-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2); /* Black overlay with 70% opacity */
+  backdrop-filter: blur(4px); /* Adds a small blur */
+  z-index: 1;
+}
+
+.bg-image > * {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}
+
+.mantine-modal-header {
+  background-color: red !important;
 }
