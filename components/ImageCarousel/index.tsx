@@ -1,53 +1,55 @@
-import React, { useState } from "react";
-import { IconChevronRight, IconChevronLeft } from "@tabler/icons-react";
-// import Image from "next/image";
-import { useSwipeable } from "react-swipeable";
-import { useDisclosure } from "@mantine/hooks";
+import React from "react";
 import { Carousel } from "@mantine/carousel";
-import { Image } from "@mantine/core";
+import RestaurantMenu2 from "@/app/new-page/RestautrantMenu2";
 
-const ImageCarousel = ({ images, currentIndex, onClose }: any) => {
-  const [activeIndex, setActiveIndex] = useState(currentIndex);
-  const [opened, { open, close }] = useDisclosure(false);
+interface ImageCarouselProps {
+  images: string[];
+  currentIndex?: number;
+  onClose?: () => void;
+}
 
-  const goToNext = () => {
-    setActiveIndex((prev: any) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
-
-  const goToPrev = () => {
-    setActiveIndex((prev: any) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  // Swipe handlers
-  const handlers = useSwipeable({
-    onSwipedLeft: goToNext,
-    onSwipedRight: goToPrev,
-    preventScrollOnSwipe: true,
-    trackMouse: true, // Also allows swiping on desktop
-  });
-
+const ImageCarousel: React.FC<ImageCarouselProps> = ({
+  images,
+  currentIndex = 0,
+  onClose,
+}) => {
   return (
     <Carousel
       withIndicators
-      // height={600}
-      // slideSize="200%%"
-      // slideGap="md"
-      p={10}
-      // loop
+      height="100vh"
+      initialSlide={currentIndex}
+      loop
       align="start"
       slidesToScroll={1}
-      dragFree
-      slideGap="md"
+      styles={{
+        root: {
+          width: "100%",
+        },
+        viewport: {
+          height: "100%",
+        },
+        container: {
+          height: "100%",
+        },
+        slide: {
+          height: "100%",
+          width: "100%",
+        },
+        indicators: {
+          bottom: "2rem",
+        },
+      }}
     >
-      {images.map((image: string, index: number) => (
-        <Carousel.Slide key={index} w={"100%"}>
-          <div className="bg-red-300 ">
-            {" "}
-            <Image src={image} alt="" className="w-full " />
-            {/* {index} */}
-          </div>
-        </Carousel.Slide>
-      ))}
+      <Carousel.Slide key={1}>
+        <div className="h-full w-full overflow-auto">
+          <RestaurantMenu2 title={"OUR MENU"} />
+        </div>
+      </Carousel.Slide>
+      <Carousel.Slide key={2}>
+        <div className="h-full w-full overflow-auto">
+          <RestaurantMenu2 />
+        </div>
+      </Carousel.Slide>
     </Carousel>
   );
 };

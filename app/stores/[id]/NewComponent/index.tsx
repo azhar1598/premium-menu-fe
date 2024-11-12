@@ -17,6 +17,7 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconBrandTwitter,
+  IconClock,
   IconInfoSquare,
   IconMail,
   IconMapPin,
@@ -113,27 +114,13 @@ function NewComponent({ storeDetail }: any) {
           </Badge> */}
 
           {/* <MenuBookModal opened={opened} close={close} /> */}
-          {/* <ImageCarousel
+          <ImageCarousel
             images={storeInfo?.menuImages}
             currentIndex={selectedImageIndex}
             onClose={() => setShowCarousel(false)}
-          /> */}
+          />
           {/* <RestaurantMenuCard /> */}
-          <RestaurantMenu2 />
-
-          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w">
-            <h2 className="text-lg font-semibold text-white mb-3 text-center">
-              Business Hours
-            </h2>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 text-sm">
-              <div>Monday - Friday</div>
-              <div>7:00 AM - 10:00 PM</div>
-              <div>Saturday</div>
-              <div>7:00 AM - 10:00 PM</div>
-              <div>Sunday</div>
-              <div>7:00 AM - 9:00 PM</div>
-            </div>
-          </div>
+          {/* <RestaurantMenu2 /> */}
 
           <Stack
             gap={0}
@@ -196,6 +183,39 @@ function NewComponent({ storeDetail }: any) {
                 <br />
                 {storeDetail?.state}, {storeDetail?.pincode}.
               </Text>
+            </Flex>
+            <Flex
+              direction="column"
+              align="flex-start"
+              gap="sm"
+              p={20}
+              //   className="bg-black/60 backdrop-blur-xs"
+              //   bg={"black"}
+            >
+              <Flex gap={10}>
+                <Box
+                  p={2}
+                  style={{
+                    backgroundColor: "rgba(255, 128, 0, 0.2)",
+                    borderRadius: "50%",
+                    width: "30px",
+                    height: "30px",
+                  }}
+                >
+                  <IconClock size={24} color="#ff8000" stroke={1.5} />
+                </Box>
+                <h2 className="text-lg font-semibold text-white mb-3 text-s">
+                  Business Hours
+                </h2>
+              </Flex>
+              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 text-sm">
+                <div>Monday - Friday</div>
+                <div>7:00 AM - 10:00 PM</div>
+                <div>Saturday</div>
+                <div>7:00 AM - 10:00 PM</div>
+                <div>Sunday</div>
+                <div>7:00 AM - 9:00 PM</div>
+              </div>
             </Flex>
 
             <Group

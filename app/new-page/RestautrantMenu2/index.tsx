@@ -3,13 +3,13 @@ import { Phone, MapPin } from "lucide-react";
 import { Text } from "@mantine/core";
 import { IconCurrencyRupee } from "@tabler/icons-react";
 
-const RestaurantMenu2 = () => {
+const RestaurantMenu2 = ({ title }: any) => {
   return (
-    <div className="min-h- bg-zinc-900  py-3 text-white w-[90vw] rounded-sm">
+    <div className="min-h- bg-zinc/30 backdrop-blur-sm  py-3 mx-3 text-white rounded-sm menu-bg2">
       <div className="max-w- mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">OUR MENU</h1>
+          <h1 className="text-3xl font-bold mb-2">{title}</h1>
           {/* <h2 className="text-md text-gray-300">Paucek and Lage Restaurant</h2> */}
         </div>
 

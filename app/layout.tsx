@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import "mantine-datatable/styles.layer.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/carousel/styles.css";
+
 import {
   Heebo,
   Urbanist,
