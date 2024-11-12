@@ -138,12 +138,12 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "rgba(255, 128, 0, 0.2)",
+                    backgroundColor: "#a904044d",
                     borderRadius: "50%",
                     width: "30px",
                   }}
                 >
-                  <IconInfoSquare color="#ff8000" stroke={2} />
+                  <IconInfoSquare color="#901414" stroke={2} />
                 </Box>
                 <Text size="lg" fw={600} color="white">
                   About Us
@@ -167,12 +167,12 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "rgba(255, 128, 0, 0.2)",
+                    backgroundColor: "#a904044d",
                     borderRadius: "50%",
                     width: "30px",
                   }}
                 >
-                  <IconMapPin size={24} color="#ff8000" stroke={1.5} />
+                  <IconMapPin size={24} color="#901414" stroke={1.5} />
                 </Box>
                 <Text size="lg" fw={600} color="white" ta="left">
                   Our Location
@@ -196,13 +196,13 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "rgba(255, 128, 0, 0.2)",
+                    backgroundColor: "#a904044d",
                     borderRadius: "50%",
                     width: "30px",
                     height: "30px",
                   }}
                 >
-                  <IconClock size={24} color="#ff8000" stroke={1.5} />
+                  <IconClock size={24} color="#901414" stroke={1.5} />
                 </Box>
                 <h2 className="text-lg font-semibold text-white mb-3 text-s">
                   Business Hours
@@ -250,7 +250,7 @@ function NewComponent({ storeDetail }: any) {
                   textDecoration: "none",
                   transition: "color 200ms ease",
                   "&:hover": {
-                    color: "#ff8000",
+                    color: "#901414",
                   },
                 })}
               >
@@ -280,8 +280,8 @@ function NewComponent({ storeDetail }: any) {
                       backgroundColor: "rgba(255, 255, 255, 0.1)",
                       color: theme.colors.gray[3],
                       "&:hover": {
-                        backgroundColor: "rgba(255, 128, 0, 0.2)",
-                        color: "#ff8000",
+                        backgroundColor: "#a904044d",
+                        color: "#901414",
                       },
                     })}
                   >

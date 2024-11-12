@@ -16,9 +16,9 @@ const RestaurantMenu2 = ({ title }: any) => {
         {/* Main Course Section */}
         <div className="flex justify-between items-center mb-12 ">
           <div className="w-64 mr-4 pl-4">
-            <div className="text-md inline-block bg-orange-500  px-3 py-2 rounded-md mb-4">
+            <div className="text-md inline-block bg-[#901414]  px-3 py-2 rounded-md mb-4">
               <Text
-                c={"black"}
+                c={"white"}
                 size={"14px"}
                 fw={600}
                 className="text-black font-bold"
@@ -36,7 +36,7 @@ const RestaurantMenu2 = ({ title }: any) => {
             </div>
           </div>
           <div className="w-[170px] h-[170px] relative">
-            <div className="absolute inset-4 bg-orange-500 rounded-lg" />
+            <div className="absolute inset-4 bg-[#901414] rounded-lg" />
             <img
               src="https://img-global.cpcdn.com/recipes/9544754ba07a6b31/1200x630cq70/photo.jpg"
               alt="Main course"
@@ -47,7 +47,7 @@ const RestaurantMenu2 = ({ title }: any) => {
 
         <div className="flex justify-between items-center mb-12 ">
           <div className="w-[170px] h-[170px] relative">
-            <div className="absolute pr-4 inset-0 bg-orange-500 rounded-lg" />
+            <div className="absolute pr-4 inset-0 bg-[#901414] rounded-lg" />
             <img
               src="https://www.masalakorb.com/wp-content/uploads/2017/02/Chicken-Biryani-Pressure-Cooker-Recipe-V1.jpg"
               alt="Main course"
@@ -55,9 +55,9 @@ const RestaurantMenu2 = ({ title }: any) => {
             />
           </div>
           <div className="w-64 ml-4 pr-4">
-            <div className="text-md inline-block bg-orange-500  px-3 py-2 rounded-md mb-4">
+            <div className="text-md inline-block bg-[#901414]  px-3 py-2 rounded-md mb-4">
               <Text
-                c={"black"}
+                c={"white"}
                 size={"14px"}
                 fw={600}
                 className="text-black font-bold"
@@ -78,11 +78,11 @@ const RestaurantMenu2 = ({ title }: any) => {
 
         {/* Footer */}
         {/* <div className="flex justify-center gap-6">
-          <div className="bg-orange-500 text-black px-4 py-2 rounded-md flex items-center gap-2">
+          <div className="bg-[#901414] text-black px-4 py-2 rounded-md flex items-center gap-2">
             <Phone size={20} />
             123-456-7890
           </div>
-          <div className="bg-orange-500 text-black px-4 py-2 rounded-md flex items-center gap-2">
+          <div className="bg-[#901414] text-black px-4 py-2 rounded-md flex items-center gap-2">
             <MapPin size={20} />
             123 Anywhere St., Any City
           </div>
