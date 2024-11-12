@@ -1,6 +1,7 @@
 import React from "react";
 import { Phone, MapPin } from "lucide-react";
 import { Text } from "@mantine/core";
+import { IconCurrencyRupee } from "@tabler/icons-react";
 
 const RestaurantMenu2 = () => {
   return (
@@ -8,7 +9,7 @@ const RestaurantMenu2 = () => {
       <div className="max-w- mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">FOOD MENU</h1>
+          <h1 className="text-3xl font-bold mb-2">OUR MENU</h1>
           {/* <h2 className="text-md text-gray-300">Paucek and Lage Restaurant</h2> */}
         </div>
 
@@ -37,9 +38,9 @@ const RestaurantMenu2 = () => {
           <div className="w-[170px] h-[170px] relative">
             <div className="absolute inset-4 bg-orange-500 rounded-lg" />
             <img
-              src="https://www.masalakorb.com/wp-content/uploads/2017/02/Chicken-Biryani-Pressure-Cooker-Recipe-V1.jpg"
+              src="https://img-global.cpcdn.com/recipes/9544754ba07a6b31/1200x630cq70/photo.jpg"
               alt="Main course"
-              className="absolute pr-4 inset-0 rounded-lg object-cover"
+              className="absolute pr-4 inset-0 rounded-lg object-cover h-48"
             />
           </div>
         </div>
@@ -96,7 +97,9 @@ const MenuItem = ({ name, price }) => (
   <div className="flex justify-between items-center">
     <span className="text-[12px]">{name}</span>
     <div className="flex items-center">
-      <span className="text-[12px]">${price}</span>
+      <span className="flex text-[12px]">
+        <IconCurrencyRupee stroke={1} size={16} /> {price}
+      </span>
     </div>
   </div>
 );
