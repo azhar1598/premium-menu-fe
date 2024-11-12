@@ -1,5 +1,5 @@
 import React from "react";
-import { Phone, MapPin } from "lucide-react";
+
 import { Text } from "@mantine/core";
 import { IconCurrencyRupee } from "@tabler/icons-react";
 
@@ -93,7 +93,7 @@ const RestaurantMenu2 = ({ title }: any) => {
 };
 
 // MenuItem component for consistent styling
-const MenuItem = ({ name, price }) => (
+const MenuItem = ({ name, price }: any) => (
   <div className="flex justify-between items-center">
     <span className="text-[12px]">{name}</span>
     <div className="flex items-center">
