@@ -13,17 +13,17 @@ import store from "@/redux/store";
 import { usePathname } from "next/navigation";
 import "mantine-datatable/styles.layer.css";
 import "@mantine/notifications/styles.css";
+import {
+  Heebo,
+  Urbanist,
+  Space_Grotesk,
+  Tangerine, // Clean, modern geometric
+} from "next/font/google";
 import { Notifications } from "@mantine/notifications";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const spaceGrotesk = Heebo({
+  subsets: ["latin"],
+  weight: ["400", "600"],
 });
 
 // export const metadata: Metadata = {
@@ -39,9 +39,7 @@ export default function RootLayout({
   const pathname = usePathname();
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-      >
+      <body className={`${spaceGrotesk.className} antialiased `}>
         <QueryClientProvider client={queryClient}>
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />

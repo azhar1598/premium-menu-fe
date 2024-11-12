@@ -1,6 +1,7 @@
 "use client";
 import Credits from "@/components/common/Credits";
 import ContactSection from "@/components/ContactSection";
+import ImageCarousel from "@/components/ImageCarousel";
 import {
   ActionIcon,
   Box,
@@ -20,9 +21,44 @@ import {
   IconPhone,
 } from "@tabler/icons-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function NewComponent({ storeDetail }) {
+  const [showCarousel, setShowCarousel] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const [storeInfo, setStoreInfo] = useState({
+    menuImages: [
+      "https://marketplace.canva.com/EAFwRADHMsM/1/0/1035w/canva-orange-and-black-bold-geometric-restaurant-menu-AX4bhelWqNA.jpg",
+      "https://marketplace.canva.com/EAFZawUn7mU/1/0/1131w/canva-black-and-red-modern-food-menu-bu62Mi5HBkk.jpg",
+    ],
+  });
+
+  useEffect(() => {
+    const handleKeyPress = (e: any) => {
+      if (!showCarousel) return;
+
+      switch (e.key) {
+        case "ArrowRight":
+          setSelectedImageIndex((prev) =>
+            prev === (storeInfo?.menuImages?.length || 0) - 1 ? 0 : prev + 1
+          );
+          break;
+        case "ArrowLeft":
+          setSelectedImageIndex((prev) =>
+            prev === 0 ? (storeInfo?.menuImages?.length || 0) - 1 : prev - 1
+          );
+          break;
+        case "Escape":
+          setShowCarousel(false);
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => window.removeEventListener("keydown", handleKeyPress);
+  }, [showCarousel, storeInfo?.menuImages?.length]);
+
   return (
     <Stack>
       <div className="relative h-[170vh] w-screen bg-image">
@@ -30,7 +66,7 @@ function NewComponent({ storeDetail }) {
           src="/assets/auth/rest2.jpg"
           alt="Background"
           className="absolute inset-0 w-full h-full object-cover mt"
-        /> */}
+        / */}
 
         {/* Black Overlay */}
         <div className="absolute inset-0 bg-black/60" />
@@ -58,12 +94,13 @@ function NewComponent({ storeDetail }) {
               width: "200px",
               fontWeight: 550,
             }}
+            onClick={() => setShowCarousel(true)}
           >
             View Menu
           </button>
 
           {/* Business Hours */}
-          {/* <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w-64">
+          <div className="bg-black/30 backdrop-blur-sm rounded-lg p-4 mt-4 w-80">
             <h2 className="text-lg font-semibold text-white mb-3 text-center">
               Business Hours
             </h2>
@@ -75,18 +112,20 @@ function NewComponent({ storeDetail }) {
               <div>Sunday</div>
               <div>7:00 AM - 9:00 PM</div>
             </div>
-          </div> */}
+          </div>
 
           <Stack
             gap={0}
-            className="flex flex-col items-center justify-center absolute bottom-0 w-full"
+            mt={220}
+            className="flex flex-col items-center justify-center  w-full bg-black/70 backdrop-blur-xs"
           >
             <Flex
               direction="column"
               align="flex-start"
               gap="sm"
               p={20}
-              bg={"black"}
+              //   className="bg-black/30 backdrop-blur-xs"
+              //   bg={"black"}
             >
               <Flex gap={10}>
                 <Box
@@ -114,7 +153,8 @@ function NewComponent({ storeDetail }) {
               align="flex-start"
               gap="sm"
               p={20}
-              bg={"black"}
+              //   className="bg-black/60 backdrop-blur-xs"
+              //   bg={"black"}
             >
               <Flex gap={10}>
                 <Box
@@ -143,7 +183,7 @@ function NewComponent({ storeDetail }) {
               align="center"
               c={"white"}
               justify="left"
-              bg={"black"}
+              //   bg={"black"}
               p={20}
             >
               <Group
@@ -179,7 +219,7 @@ function NewComponent({ storeDetail }) {
               </Group>
             </Group>
 
-            <Stack p={20} bg={"black"}>
+            <Stack p={20} bg={"blasck"}>
               <Text color="gray.5" size="sm" fw={500}>
                 Follow Us On
               </Text>
@@ -216,6 +256,13 @@ function NewComponent({ storeDetail }) {
           {/* <ContactSection storeDetail={storeDetail} /> */}
         </Stack>
       </div>
+      {showCarousel && (
+        <ImageCarousel
+          images={storeInfo?.menuImages}
+          currentIndex={selectedImageIndex}
+          onClose={() => setShowCarousel(false)}
+        />
+      )}
     </Stack>
   );
 }
