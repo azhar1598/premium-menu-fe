@@ -30,7 +30,7 @@ function StoreMenuComponent({ storeDetail }: any) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const groupedHours = storeDetail?.businessHours?.reduce(
-    (acc: string, hour: any) => {
+    (acc: any, hour: any) => {
       const { day, openTime, closeTime } = hour;
       const key = `${openTime}-${closeTime}`;
       if (!acc[key]) {
@@ -181,7 +181,7 @@ function StoreMenuComponent({ storeDetail }: any) {
 
               {groupedHours &&
                 Object.values(groupedHours).map(
-                  ({ days, openTime, closeTime }) => (
+                  ({ days, openTime, closeTime }: any) => (
                     <div
                       key={`${openTime}-${closeTime}`}
                       className="text-white/80"
