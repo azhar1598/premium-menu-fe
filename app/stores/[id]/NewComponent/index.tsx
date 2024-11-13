@@ -43,6 +43,8 @@ function NewComponent({ storeDetail }: any) {
     ],
   });
 
+  console.log("storeDetail", storeDetail);
+
   useEffect(() => {
     const handleKeyPress = (e: any) => {
       if (!showCarousel) return;
@@ -68,9 +70,28 @@ function NewComponent({ storeDetail }: any) {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [showCarousel, storeInfo?.menuImages?.length]);
 
+  const groupedHours = storeDetail?.businessHours?.reduce((acc, hour) => {
+    const { day, openTime, closeTime } = hour;
+    const key = `${openTime}-${closeTime}`;
+    if (!acc[key]) {
+      acc[key] = { days: [day], openTime, closeTime };
+    } else {
+      acc[key].days.push(day);
+    }
+    return acc;
+  }, {});
+
+  const formatTime = (time) => {
+    const [hours, minutes] = time.split(":").map(Number);
+    const ampm = hours >= 12 ? "PM" : "AM";
+    return `${hours % 12 || 12}:${minutes
+      ?.toString()
+      .padStart(2, "0")} ${ampm}`;
+  };
+
   return (
     <Stack>
-      <div className="relative w-screen bg-image  bg-black/70  backdrop-blur-sm">
+      <div className=" max-w-[400px] relative w-screen bg-image  bg-black/70  backdrop-blur-sm">
         {/* <img
           src="/assets/auth/rest2.jpg"
           alt="Background"
@@ -84,18 +105,20 @@ function NewComponent({ storeDetail }: any) {
         <Stack align="center" pt={20}>
           {/* Logo */}
           <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center ">
-            <span className="text-xl font-bold text-white">RT</span>
+            <span className="text-xl font-bold text-white">
+              {storeDetail?.name.slice(0, 2).toUpperCase()}
+            </span>
           </div>
 
           {/* Restaurant Name */}
 
           <Indicator color="green" position="top-end" processing>
             <h1 className="text-lg font-bold text-white px-2 ">
-              Raghavendra Tiffins
+              {storeDetail?.name}
             </h1>
           </Indicator>
 
-          <p className="text-gray-400 -mt-3">Tastes Better</p>
+          <p className="text-gray-400 -mt-3">{storeDetail?.tagLine}</p>
 
           {/* <Badge
             style={{
@@ -208,14 +231,33 @@ function NewComponent({ storeDetail }: any) {
                   Business Hours
                 </h2>
               </Flex>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 text-sm">
+              {/* <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 text-sm">
                 <div>Monday - Friday</div>
                 <div>7:00 AM - 10:00 PM</div>
                 <div>Saturday</div>
                 <div>7:00 AM - 10:00 PM</div>
                 <div>Sunday</div>
                 <div>7:00 AM - 9:00 PM</div>
-              </div>
+              </div> */}
+
+              {groupedHours &&
+                Object.values(groupedHours).map(
+                  ({ days, openTime, closeTime }) => (
+                    <div
+                      key={`${openTime}-${closeTime}`}
+                      className="text-white/80"
+                    >
+                      <span className="font-medium">
+                        {days.length > 1
+                          ? `${days.slice(0, -1).join(", ")} and ${
+                              days[days.length - 1]
+                            }`
+                          : days[0]}
+                      </span>
+                      : {formatTime(openTime)} - {formatTime(closeTime)}
+                    </div>
+                  )
+                )}
             </Flex>
 
             <Group
@@ -239,7 +281,7 @@ function NewComponent({ storeDetail }: any) {
                 })}
               >
                 <IconMail size={20} />
-                <Text size="sm">ts.cafesouth.av@email.com</Text>
+                <Text size="sm">{storeDetail?.merchantDetails?.email}</Text>
               </Group>
               <Group
                 gap="xs"
@@ -255,7 +297,9 @@ function NewComponent({ storeDetail }: any) {
                 })}
               >
                 <IconPhone size={20} />
-                <Text size="sm">+65 3119 2890</Text>
+                <Text size="sm">
+                  +91-{storeDetail?.merchantDetails?.phoneNumber}
+                </Text>
               </Group>
             </Group>
 
