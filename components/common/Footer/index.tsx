@@ -118,13 +118,13 @@ function Footer({ storeDetail }: any) {
             }}
           ></Box>
           <IconClock
-            style={{ position: "absolute", left: 22, marginTop: "5px" }}
+            style={{ position: "absolute", left: 22 }}
             color={storeDetail?.websiteTheme.primaryColor}
             stroke={1.5}
           />
-          <h2 className="text-lg font-semibold text-white mb-3 text-s">
+          <Text size="lg" fw={600} color="white" ta="left">
             Business Hours
-          </h2>
+          </Text>
         </Flex>
 
         {groupedHours &&
