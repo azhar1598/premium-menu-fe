@@ -231,14 +231,6 @@ function NewComponent({ storeDetail }: any) {
                   Business Hours
                 </h2>
               </Flex>
-              {/* <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-gray-200 text-sm">
-                <div>Monday - Friday</div>
-                <div>7:00 AM - 10:00 PM</div>
-                <div>Saturday</div>
-                <div>7:00 AM - 10:00 PM</div>
-                <div>Sunday</div>
-                <div>7:00 AM - 9:00 PM</div>
-              </div> */}
 
               {groupedHours &&
                 Object.values(groupedHours).map(
