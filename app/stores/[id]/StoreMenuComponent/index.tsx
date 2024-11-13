@@ -1,7 +1,5 @@
 "use client";
 import Credits from "@/components/common/Credits";
-import ContactSection from "@/components/ContactSection";
-import ImageCarousel from "@/components/ImageCarousel";
 import {
   ActionIcon,
   Badge,
@@ -25,63 +23,27 @@ import {
 } from "@tabler/icons-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import BookPageComponent from "./MenuBook";
-import MenuBookModal from "./MenuBook";
-import { useDisclosure } from "@mantine/hooks";
-import MenuImage from "../../../../public/assets/auth/menu.png";
-import RestaurantMenuCard from "@/app/new-page/RestaurantMenu";
-import RestaurantMenu2 from "@/app/new-page/RestautrantMenu2";
+import MenuCarousel from "./MenuCarousel";
 
-function NewComponent({ storeDetail }: any) {
+function StoreMenuComponent({ storeDetail }: any) {
   const [showCarousel, setShowCarousel] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
-  const [storeInfo, setStoreInfo] = useState({
-    menuImages: [
-      "https://marketplace.canva.com/EAFwRADHMsM/1/0/1035w/canva-orange-and-black-bold-geometric-restaurant-menu-AX4bhelWqNA.jpg",
-      "https://marketplace.canva.com/EAFZawUn7mU/1/0/1131w/canva-black-and-red-modern-food-menu-bu62Mi5HBkk.jpg",
-    ],
-  });
-
-  console.log("storeDetail", storeDetail);
-
-  useEffect(() => {
-    const handleKeyPress = (e: any) => {
-      if (!showCarousel) return;
-
-      switch (e.key) {
-        case "ArrowRight":
-          setSelectedImageIndex((prev) =>
-            prev === (storeInfo?.menuImages?.length || 0) - 1 ? 0 : prev + 1
-          );
-          break;
-        case "ArrowLeft":
-          setSelectedImageIndex((prev) =>
-            prev === 0 ? (storeInfo?.menuImages?.length || 0) - 1 : prev - 1
-          );
-          break;
-        case "Escape":
-          setShowCarousel(false);
-          break;
+  const groupedHours = storeDetail?.businessHours?.reduce(
+    (acc: string, hour: any) => {
+      const { day, openTime, closeTime } = hour;
+      const key = `${openTime}-${closeTime}`;
+      if (!acc[key]) {
+        acc[key] = { days: [day], openTime, closeTime };
+      } else {
+        acc[key].days.push(day);
       }
-    };
+      return acc;
+    },
+    {}
+  );
 
-    window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [showCarousel, storeInfo?.menuImages?.length]);
-
-  const groupedHours = storeDetail?.businessHours?.reduce((acc, hour) => {
-    const { day, openTime, closeTime } = hour;
-    const key = `${openTime}-${closeTime}`;
-    if (!acc[key]) {
-      acc[key] = { days: [day], openTime, closeTime };
-    } else {
-      acc[key].days.push(day);
-    }
-    return acc;
-  }, {});
-
-  const formatTime = (time) => {
+  const formatTime = (time: string) => {
     const [hours, minutes] = time.split(":").map(Number);
     const ampm = hours >= 12 ? "PM" : "AM";
     return `${hours % 12 || 12}:${minutes
@@ -91,26 +53,22 @@ function NewComponent({ storeDetail }: any) {
 
   return (
     <Stack>
-      <div className=" max-w-[400px] relative w-screen bg-image  bg-black/70  backdrop-blur-sm">
-        {/* <img
-          src="/assets/auth/rest2.jpg"
-          alt="Background"
-          className="absolute inset-0 w-full h-full object-cover mt"
-        / */}
-
+      <div
+        className=" max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat  bg-black/70  backdrop-blur-sm"
+        style={{
+          backgroundImage: `url(${storeDetail?.websiteTheme?.backgroundImage})`,
+        }}
+      >
         {/* Black Overlay */}
         {/* <div className="absolute inset-0 bg-black/60" /> */}
         {/* <div className="absolute inset-0 bg-black/10 backdrop-blur-sm"></div> */}
 
         <Stack align="center" pt={20}>
-          {/* Logo */}
           <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center ">
             <span className="text-xl font-bold text-white">
               {storeDetail?.name.slice(0, 2).toUpperCase()}
             </span>
           </div>
-
-          {/* Restaurant Name */}
 
           <Indicator color="green" position="top-end" processing>
             <h1 className="text-lg font-bold text-white px-2 ">
@@ -120,30 +78,7 @@ function NewComponent({ storeDetail }: any) {
 
           <p className="text-gray-400 -mt-3">{storeDetail?.tagLine}</p>
 
-          {/* <Badge
-            style={{
-              backgroundColor: "green",
-              color: "white",
-              padding: "6px 2px 6px 2px",
-              borderRadius: "5px",
-              height: "20px",
-              width: "100px",
-              fontWeight: 550,
-            }}
-            fs={"8px"}
-            onClick={() => setShowCarousel(true)}
-          >
-            STORE OPEN
-          </Badge> */}
-
-          {/* <MenuBookModal opened={opened} close={close} /> */}
-          <ImageCarousel
-            images={storeInfo?.menuImages}
-            currentIndex={selectedImageIndex}
-            onClose={() => setShowCarousel(false)}
-          />
-          {/* <RestaurantMenuCard /> */}
-          {/* <RestaurantMenu2 /> */}
+          <MenuCarousel storeDetail={storeDetail} />
 
           <Stack
             gap={0}
@@ -161,13 +96,17 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "#a904044d",
+                    backgroundColor: storeDetail?.websiteTheme.primaryColor,
                     borderRadius: "50%",
+                    filter: "blur(10px)",
                     width: "30px",
                   }}
-                >
-                  <IconInfoSquare color="#901414" stroke={2} />
-                </Box>
+                ></Box>
+                <IconInfoSquare
+                  style={{ position: "absolute", left: 22 }}
+                  color={storeDetail?.websiteTheme.primaryColor}
+                  stroke={2}
+                />
                 <Text size="lg" fw={600} color="white">
                   About Us
                 </Text>
@@ -190,13 +129,18 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "#a904044d",
+                    backgroundColor: storeDetail?.websiteTheme.primaryColor,
                     borderRadius: "50%",
+                    filter: "blur(10px)",
                     width: "30px",
                   }}
-                >
-                  <IconMapPin size={24} color="#901414" stroke={1.5} />
-                </Box>
+                ></Box>
+                <IconMapPin
+                  // size={24}
+                  style={{ position: "absolute", left: 22 }}
+                  color={storeDetail?.websiteTheme.primaryColor}
+                  stroke={1.5}
+                />
                 <Text size="lg" fw={600} color="white" ta="left">
                   Our Location
                 </Text>
@@ -219,14 +163,17 @@ function NewComponent({ storeDetail }: any) {
                 <Box
                   p={2}
                   style={{
-                    backgroundColor: "#a904044d",
+                    backgroundColor: storeDetail?.websiteTheme.primaryColor,
                     borderRadius: "50%",
+                    filter: "blur(10px)",
                     width: "30px",
-                    height: "30px",
                   }}
-                >
-                  <IconClock size={24} color="#901414" stroke={1.5} />
-                </Box>
+                ></Box>
+                <IconClock
+                  style={{ position: "absolute", left: 22, marginTop: "5px" }}
+                  color={storeDetail?.websiteTheme.primaryColor}
+                  stroke={1.5}
+                />
                 <h2 className="text-lg font-semibold text-white mb-3 text-s">
                   Business Hours
                 </h2>
@@ -339,4 +286,4 @@ function NewComponent({ storeDetail }: any) {
   );
 }
 
-export default NewComponent;
+export default StoreMenuComponent;

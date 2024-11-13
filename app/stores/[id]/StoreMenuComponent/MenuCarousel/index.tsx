@@ -1,23 +1,13 @@
 import React from "react";
 import { Carousel } from "@mantine/carousel";
-import RestaurantMenu2 from "@/app/new-page/RestautrantMenu2";
+import MenuCard from "./MenuCard";
 
-interface ImageCarouselProps {
-  images: string[];
-  currentIndex?: number;
-  onClose?: () => void;
-}
-
-const ImageCarousel: React.FC<ImageCarouselProps> = ({
-  images,
-  currentIndex = 0,
-  onClose,
-}) => {
+const MenuCarousel = ({ storeDetail }: any) => {
   return (
     <Carousel
       withIndicators
       height="100vh"
-      initialSlide={currentIndex}
+      initialSlide={0}
       loop
       align="start"
       slidesToScroll={1}
@@ -42,16 +32,16 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
     >
       <Carousel.Slide key={1}>
         <div className="h-full w-full overflow-auto">
-          <RestaurantMenu2 title={"OUR MENU"} />
+          <MenuCard title={"OUR MENU"} storeDetail={storeDetail} />
         </div>
       </Carousel.Slide>
       <Carousel.Slide key={2}>
         <div className="h-full w-full overflow-auto">
-          <RestaurantMenu2 />
+          <MenuCard />
         </div>
       </Carousel.Slide>
     </Carousel>
   );
 };
 
-export default ImageCarousel;
+export default MenuCarousel;
