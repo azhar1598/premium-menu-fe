@@ -1,25 +1,23 @@
 "use client";
 import { Indicator, Stack } from "@mantine/core";
-
-import React, { useState } from "react";
+import React from "react";
+import Image from "next/image";
 import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
 
 function StoreMenuComponent({ storeDetail }: any) {
   return (
     <Stack>
-      <div
-        className=" max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat  bg-black/70  backdrop-blur-sm"
-        style={{
-          backgroundImage: `url(${storeDetail?.websiteTheme?.backgroundImage})`,
-        }}
-      >
-        {/* Black Overlay */}
-        {/* <div className="absolute inset-0 bg-black/60" /> */}
-        {/* <div className="absolute inset-0 bg-black/10 backdrop-blur-sm"></div> */}
-
+      <div className=" max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat  bg-black/70  backdrop-blur-sm">
+        <Image
+          src={storeDetail?.websiteTheme?.backgroundImage || "/placeholder.jpg"}
+          alt="Store Background"
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+        />
         <Stack align="center" pt={20}>
-          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center ">
+          <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center z-[1000]">
             <span className="text-xl font-bold text-white">
               {storeDetail?.name.slice(0, 2).toUpperCase()}
             </span>
