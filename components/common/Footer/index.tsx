@@ -132,9 +132,9 @@ function Footer({ storeDetail }: any) {
             ({ days, openTime, closeTime }: any) => (
               <div key={`${openTime}-${closeTime}`} className="text-white/80">
                 <span className="font-medium">
-                  {days.length > 1
+                  {days?.length > 1
                     ? `${days.slice(0, -1).join(", ")} and ${
-                        days[days.length - 1]
+                        days[days?.length - 1]
                       }`
                     : days[0]}
                 </span>

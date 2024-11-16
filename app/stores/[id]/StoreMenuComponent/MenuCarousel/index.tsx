@@ -25,26 +25,26 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
     const slides: CategoryProduct[][] = [];
     let remainingCategories = [...storeDetail.productCategories];
 
-    while (remainingCategories.length > 0) {
+    while (remainingCategories?.length > 0) {
       let currentSlideCategories: CategoryProduct[] = [];
       let categoriesInCurrentSlide = 0;
 
       while (
         categoriesInCurrentSlide < MAX_CATEGORIES_PER_SLIDE &&
-        remainingCategories.length > 0
+        remainingCategories?.length > 0
       ) {
         const currentCategory = remainingCategories[0];
         const isFirstCategory = categoriesInCurrentSlide === 0;
-        const isLastCategory = remainingCategories.length === 1;
+        const isLastCategory = remainingCategories?.length === 1;
 
         // If this is the only category left, it can use all 14 slots
         const maxProductsForThisCategory = isLastCategory
           ? 14
           : isFirstCategory
-          ? Math.min(currentCategory.products.length, PRODUCTS_PER_CATEGORY)
+          ? Math.min(currentCategory.products?.length, PRODUCTS_PER_CATEGORY)
           : PRODUCTS_PER_CATEGORY;
 
-        if (currentCategory.products.length <= maxProductsForThisCategory) {
+        if (currentCategory.products?.length <= maxProductsForThisCategory) {
           // Add entire category if it fits
           currentSlideCategories.push({
             ...currentCategory,

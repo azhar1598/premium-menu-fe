@@ -6,7 +6,6 @@ import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
 
 function StoreMenuComponent({ storeDetail }: any) {
-  console.log("storeDD", storeDetail);
   return (
     <Stack>
       <div className=" max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat  bg-black/70  backdrop-blur-sm">
