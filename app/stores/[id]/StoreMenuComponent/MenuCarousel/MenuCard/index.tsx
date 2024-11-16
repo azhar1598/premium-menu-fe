@@ -13,7 +13,8 @@ export const MenuCard = ({
   categories,
 }: {
   storeDetail: any;
-  categories: CategoryProduct[];
+  // categories: CategoryProduct[];
+  categories: any;
 }) => {
   return (
     <div className="min-h-full bg-zinc/30 backdrop-blur-sm py-3 mx-1  px-1 text-white rounded-sm menu-bg2 overflow-auto">
@@ -22,7 +23,7 @@ export const MenuCard = ({
           <h1 className="text-3xl font-bold mb-2">OUR MENU</h1>
         </div>
 
-        {categories.map((category, categoryIndex) => {
+        {categories.map((category: any, categoryIndex: number) => {
           // Determine if we should show only one image based on product count
           const showSingleImage = category.products.length < 14;
           const imagesToShow = showSingleImage
@@ -66,17 +67,19 @@ export const MenuCard = ({
                     </div>
                   )}
                   <div className="space-y-2 px-3">
-                    {category.products.map((product, productIndex) => (
-                      <MenuItem
-                        key={`${product.name}-${productIndex}`}
-                        name={product.name}
-                        price={product.price}
-                      />
-                    ))}
+                    {category.products.map(
+                      (product: any, productIndex: number) => (
+                        <MenuItem
+                          key={`${product.name}-${productIndex}`}
+                          name={product.name}
+                          price={product.price}
+                        />
+                      )
+                    )}
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                  {imagesToShow.map((image, imageIndex) => (
+                  {imagesToShow.map((image: any, imageIndex: number) => (
                     <div
                       key={imageIndex}
                       className={`relative mt-4 h-[180px] ${
