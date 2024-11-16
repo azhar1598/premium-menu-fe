@@ -25,7 +25,7 @@ function StoreMenuComponent({ storeDetail }: any) {
                 style={{ color: storeDetail.websiteTheme.titleColor }}
               >
                 {" "}
-                {storeDetail?.name.slice(0, 2).toUpperCase()}
+                {storeDetail?.name?.slice(0, 2).toUpperCase()}
               </span>
             ) : (
               <Image

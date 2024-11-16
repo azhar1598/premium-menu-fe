@@ -56,7 +56,7 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
           // Split category if it doesn't fit
           const firstPart: CategoryProduct = {
             ...currentCategory,
-            products: currentCategory.products.slice(
+            products: currentCategory.products?.slice(
               0,
               maxProductsForThisCategory
             ),
@@ -65,7 +65,7 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
 
           const remainingPart: CategoryProduct = {
             ...currentCategory,
-            products: currentCategory.products.slice(
+            products: currentCategory.products?.slice(
               maxProductsForThisCategory
             ),
             isContinuation: true,
