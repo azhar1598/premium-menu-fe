@@ -1,109 +1,141 @@
-import React from "react";
-
-import { Text } from "@mantine/core";
+import { Image, Text } from "@mantine/core";
 import { IconCurrencyRupee } from "@tabler/icons-react";
 
-const MenuCard = ({ title, storeDetail }: any) => {
+interface CategoryProduct {
+  categoryName: string;
+  categoryImages: string[];
+  categoryType: string;
+  products: any[];
+}
+
+export const MenuCard = ({
+  storeDetail,
+  categories,
+}: {
+  storeDetail: any;
+  categories: CategoryProduct[];
+}) => {
   return (
-    <div className="min-h- bg-zinc/30 backdrop-blur-sm  py-3 mx-3 text-white rounded-sm menu-bg2">
-      <div className="max-w- mx-auto">
+    <div className="min-h-full bg-zinc/30 backdrop-blur-sm py-3 mx-1  px-1 text-white rounded-sm menu-bg2 overflow-auto">
+      <div className="max-w-full mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">{title}</h1>
+          <h1 className="text-3xl font-bold mb-2">OUR MENU</h1>
         </div>
 
-        <div className="flex justify-between items-center mb-12 ">
-          <div className="w-64 mr-4 pl-4">
-            <div
-              className="text-md inline-block   px-3 py-2 rounded-md mb-4"
-              style={{
-                backgroundColor: storeDetail?.websiteTheme.primaryColor,
-              }}
-            >
-              <Text
-                c={"white"}
-                size={"14px"}
-                fw={600}
-                className="text-black font-bold"
-              >
-                {" "}
-                MAIN COURSE
-              </Text>
-            </div>
-            <div className="space-y-2">
-              <MenuItem name="Cheeseburger" price={34} />
-              <MenuItem name="Cheese sandwich" price={22} />
-              <MenuItem name="Chicken burgers" price={23} />
-              <MenuItem name="Spicy chicken" price={33} />
-              <MenuItem name="Hot dog" price={24} />
-            </div>
-          </div>
-          <div className="w-[170px] h-[170px] relative">
-            <div
-              className="absolute inset-4  rounded-lg"
-              style={{
-                backgroundColor: storeDetail?.websiteTheme.primaryColor,
-              }}
-            />
-            <img
-              src="https://img-global.cpcdn.com/recipes/9544754ba07a6b31/1200x630cq70/photo.jpg"
-              alt="Main course"
-              className="absolute pr-4 inset-0 rounded-lg object-cover h-48"
-            />
-          </div>
-        </div>
+        {categories.map((category, categoryIndex) => {
+          // Determine if we should show only one image based on product count
+          const showSingleImage = category.products.length < 14;
+          const imagesToShow = showSingleImage
+            ? [category.categoryImages[0]]
+            : category.categoryImages;
 
-        <div className="flex justify-between items-center mb-12 ">
-          <div className="w-[170px] h-[170px] relative">
+          return (
             <div
-              className="absolute pr-4 inset-0  rounded-lg"
-              style={{
-                backgroundColor: storeDetail?.websiteTheme.primaryColor,
-              }}
-            />
-            <img
-              src="https://www.masalakorb.com/wp-content/uploads/2017/02/Chicken-Biryani-Pressure-Cooker-Recipe-V1.jpg"
-              alt="Main course"
-              className="absolute inset-2 rounded-lg object-cover"
-            />
-          </div>
-          <div className="w-64 ml-4 pr-4">
-            <div
-              className="text-md inline-block   px-3 py-2 rounded-md mb-4"
-              style={{
-                backgroundColor: storeDetail?.websiteTheme.primaryColor,
-              }}
+              key={`${category.categoryName}-${categoryIndex}`}
+              className="mb-12 "
             >
-              <Text
-                c={"white"}
-                size={"14px"}
-                fw={600}
-                className="text-black font-bold"
+              <div
+                className={`flex justify-between flex-start ${
+                  categoryIndex % 2 === 1 ? "flex-row-reverse" : ""
+                }`}
               >
-                {" "}
-                APPETIZERS
-              </Text>
+                <div
+                  className={`w-64 ${
+                    categoryIndex % 2 === 1 ? "pl-4" : "pr-4"
+                  }`}
+                >
+                  {category.isContinuation ? (
+                    <div className="text-md mb-4 italic text-gray-300 ">
+                      {category.categoryName} continues...
+                    </div>
+                  ) : (
+                    <div
+                      className="text-md inline-block mx-3 py-2 rounded-md mb-4 px-3"
+                      style={{
+                        backgroundColor: storeDetail?.websiteTheme.primaryColor,
+                      }}
+                    >
+                      <Text
+                        c="white"
+                        size="14px"
+                        fw={600}
+                        className="text-black font-bold"
+                      >
+                        {category.categoryName.toUpperCase()}
+                      </Text>
+                    </div>
+                  )}
+                  <div className="space-y-2 px-3">
+                    {category.products.map((product, productIndex) => (
+                      <MenuItem
+                        key={`${product.name}-${productIndex}`}
+                        name={product.name}
+                        price={product.price}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4">
+                  {imagesToShow.map((image, imageIndex) => (
+                    <div
+                      key={imageIndex}
+                      className={`relative mt-4 h-[180px] ${
+                        showSingleImage ? "w-[130px]" : "w-[130px]"
+                      }`}
+                    >
+                      {showSingleImage && (
+                        <div
+                          className="absolute inset-0 -top-2 left-2 right-2 h-32 rounded-lg"
+                          style={{
+                            backgroundColor:
+                              storeDetail?.websiteTheme.primaryColor,
+                          }}
+                        />
+                      )}
+
+                      {!showSingleImage && (
+                        <div
+                          className="absolute inset-0 -top-2 left-2 right-2 h-32 rounded-lg"
+                          style={{
+                            backgroundColor:
+                              storeDetail?.websiteTheme.primaryColor,
+                          }}
+                        />
+                      )}
+                      <Image
+                        src={image}
+                        alt={`${category.categoryName} ${imageIndex + 1}`}
+                        className={`absolute ${
+                          categoryIndex % 2 === 0 ? "pr-4" : "pl-4"
+                        } rounded-lg object-cover ${
+                          showSingleImage
+                            ? "h-36 inset-0 "
+                            : "h-36 -  rounded-full"
+                        }`}
+                        style={{ borderRadius: "10px" }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            <div className="space-y-2">
-              <MenuItem name="Cheeseburger" price={34} />
-              <MenuItem name="Cheese sandwich" price={22} />
-              <MenuItem name="Chicken burgers" price={23} />
-              <MenuItem name="Spicy chicken" price={33} />
-              <MenuItem name="Hot dog" price={24} />
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-const MenuItem = ({ name, price }: any) => (
-  <div className="flex justify-between items-center">
-    <span className="text-[12px]">{name}</span>
+const MenuItem = ({ name, price }: { name: string; price: string }) => (
+  <div className="flex justify-between items-center ">
+    <Text size="14px" className="text-white" mb={6} mt={2}>
+      {name}
+    </Text>
     <div className="flex items-center">
-      <span className="flex text-[12px]">
-        <IconCurrencyRupee stroke={1} size={16} /> {price}
-      </span>
+      <Text size="14px" className="flex text-white">
+        <IconCurrencyRupee stroke={1} size={16} />
+        <span className="mt-[2px]">{price}</span>
+      </Text>
     </div>
   </div>
 );
