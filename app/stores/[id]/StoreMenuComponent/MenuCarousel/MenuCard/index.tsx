@@ -25,7 +25,7 @@ export const MenuCard = ({
 
         {categories.map((category: any, categoryIndex: number) => {
           // Determine if we should show only one image based on product count
-          const showSingleImage = category.products.length < 14;
+          const showSingleImage = category.products?.length < 14;
           const imagesToShow = showSingleImage
             ? [category.images[0]]
             : category.images;
