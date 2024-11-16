@@ -9,6 +9,7 @@ const nextConfig = {
       "d1csarkz8obe9u.cloudfront.net",
       "*.jpg",
       "marketplace.canva.com",
+      "storage.googleapis.com",
     ],
   },
 };

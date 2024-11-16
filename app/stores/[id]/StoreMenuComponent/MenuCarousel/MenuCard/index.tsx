@@ -26,8 +26,8 @@ export const MenuCard = ({
           // Determine if we should show only one image based on product count
           const showSingleImage = category.products.length < 14;
           const imagesToShow = showSingleImage
-            ? [category.categoryImages[0]]
-            : category.categoryImages;
+            ? [category.images[0]]
+            : category.images;
 
           return (
             <div
@@ -61,7 +61,7 @@ export const MenuCard = ({
                         fw={600}
                         className="text-black font-bold"
                       >
-                        {category.categoryName.toUpperCase()}
+                        {category.name.toUpperCase()}
                       </Text>
                     </div>
                   )}
