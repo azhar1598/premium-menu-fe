@@ -3,6 +3,7 @@ import {
   IconBrandFacebook,
   IconBrandInstagram,
   IconBrandTwitter,
+  IconBrandYoutube,
   IconClock,
   IconInfoSquare,
   IconMail,
@@ -11,6 +12,14 @@ import {
 } from "@tabler/icons-react";
 import React from "react";
 import Credits from "../Credits";
+import { useRouter } from "next/navigation";
+
+const socialIconsMap: any = {
+  twitterUrl: IconBrandTwitter,
+  facebookUrl: IconBrandFacebook,
+  instagramUrl: IconBrandInstagram,
+  youtubeUrl: IconBrandYoutube,
+};
 
 function Footer({ storeDetail }: any) {
   const groupedHours = storeDetail?.businessHours?.reduce(
@@ -26,6 +35,8 @@ function Footer({ storeDetail }: any) {
     },
     {}
   );
+
+  const router = useRouter();
 
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(":").map(Number);
@@ -177,38 +188,45 @@ function Footer({ storeDetail }: any) {
           <Text size="sm">+91-{storeDetail?.merchantDetails?.phoneNumber}</Text>
         </Group>
       </Group>
-
-      <Stack p={20} bg={"blasck"}>
-        <Text color="gray.5" size="sm" fw={500}>
-          Follow Us On
-        </Text>
-        <Group gap="lg">
-          {[
-            { icon: IconBrandFacebook, link: "#" },
-            { icon: IconBrandInstagram, link: "#" },
-            { icon: IconBrandTwitter, link: "#" },
-          ].map((social, index) => (
-            <ActionIcon
-              key={index}
-              size="lg"
-              radius="xl"
-              variant="filled"
-              component="a"
-              href={social.link}
-              style={(theme) => ({
-                backgroundColor: "rgba(255, 255, 255, 0.1)",
-                color: theme.colors.gray[3],
-                "&:hover": {
-                  backgroundColor: "#a904044d",
-                  color: "#901414",
-                },
-              })}
-            >
-              <social.icon size={20} />
-            </ActionIcon>
-          ))}
-        </Group>
-      </Stack>
+      {storeDetail?.websiteTheme?.socialLinks && (
+        <Stack p={20} bg={"blasck"}>
+          <Text color="gray.5" size="sm" fw={500}>
+            Follow Us On
+          </Text>
+          <Group gap="lg">
+            {Object?.entries(storeDetail?.websiteTheme?.socialLinks).map(
+              ([key, link], index) => {
+                const Icon = socialIconsMap[key];
+                if (Icon) {
+                  return (
+                    <ActionIcon
+                      key={index}
+                      size="lg"
+                      radius="xl"
+                      variant="filled"
+                      component="a"
+                      style={(theme) => ({
+                        backgroundColor: "rgba(255, 255, 255, 0.1)",
+                        color: theme.colors.gray[3],
+                        "&:hover": {
+                          backgroundColor: "#a904044d",
+                          color: "#901414",
+                        },
+                      })}
+                      onClick={() => {
+                        router.push(`${link}`);
+                      }}
+                    >
+                      <Icon size={20} />
+                    </ActionIcon>
+                  );
+                }
+                return null;
+              }
+            )}
+          </Group>
+        </Stack>
+      )}
       <Credits />
     </Stack>
   );

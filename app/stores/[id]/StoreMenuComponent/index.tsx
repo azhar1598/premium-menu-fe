@@ -49,7 +49,7 @@ function StoreMenuComponent({ storeDetail }: any) {
           </Indicator>
 
           <p
-            className="text-gray-400 -mt-3"
+            className="text-gray-400 -mt-3 z-[1000]"
             style={{ color: storeDetail.websiteTheme.taglineColor }}
           >
             {storeDetail?.tagLine}
