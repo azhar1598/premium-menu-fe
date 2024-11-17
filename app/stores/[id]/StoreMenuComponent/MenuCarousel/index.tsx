@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useCallback, useState, useEffect } from "react";
 import { Carousel } from "@mantine/carousel";
 import { rem } from "@mantine/core";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
@@ -17,76 +17,122 @@ interface CategoryProduct {
   isContinuation?: boolean;
 }
 
+interface StoreDetail {
+  productCategories: CategoryProduct[];
+}
+
 const MAX_CATEGORIES_PER_SLIDE = 2;
-const PRODUCTS_PER_CATEGORY = 7; // Split 14 products between two categories
+const PRODUCTS_PER_CATEGORY = 7;
+const SLIDES_TO_PRELOAD = 2; // Number of slides to preload in each direction
 
-const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
-  const prepareSlides = () => {
-    const slides: CategoryProduct[][] = [];
-    let remainingCategories = [...storeDetail.productCategories];
+const MenuCarousel = ({ storeDetail }: { storeDetail: StoreDetail }) => {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [visibleSlideIndices, setVisibleSlideIndices] = useState<number[]>([]);
 
-    while (remainingCategories?.length > 0) {
-      let currentSlideCategories: CategoryProduct[] = [];
-      let categoriesInCurrentSlide = 0;
-
-      while (
-        categoriesInCurrentSlide < MAX_CATEGORIES_PER_SLIDE &&
-        remainingCategories?.length > 0
-      ) {
-        const currentCategory = remainingCategories[0];
-        const isFirstCategory = categoriesInCurrentSlide === 0;
-        const isLastCategory = remainingCategories?.length === 1;
-
-        // If this is the only category left, it can use all 14 slots
-        const maxProductsForThisCategory = isLastCategory
-          ? 14
-          : isFirstCategory
-          ? Math.min(currentCategory.products?.length, PRODUCTS_PER_CATEGORY)
-          : PRODUCTS_PER_CATEGORY;
-
-        if (currentCategory.products?.length <= maxProductsForThisCategory) {
-          // Add entire category if it fits
-          currentSlideCategories.push({
-            ...currentCategory,
-            products: currentCategory.products,
-            isContinuation: currentCategory.isContinuation || false,
-          });
-          remainingCategories.shift();
-        } else {
-          // Split category if it doesn't fit
-          const firstPart: CategoryProduct = {
-            ...currentCategory,
-            products: currentCategory.products?.slice(
-              0,
-              maxProductsForThisCategory
-            ),
-            isContinuation: currentCategory.isContinuation || false,
-          };
-
-          const remainingPart: CategoryProduct = {
-            ...currentCategory,
-            products: currentCategory.products?.slice(
-              maxProductsForThisCategory
-            ),
-            isContinuation: true,
-          };
-
-          currentSlideCategories.push(firstPart);
-          remainingCategories[0] = remainingPart;
-        }
-
-        categoriesInCurrentSlide++;
-
-        // If this category used all 14 slots, break the loop
-        if (maxProductsForThisCategory === 14) {
-          break;
-        }
-      }
-
-      slides.push(currentSlideCategories);
+  // Memoize the slide preparation for better performance
+  const { slides, totalProducts } = useMemo(() => {
+    if (!Array.isArray(storeDetail?.productCategories)) {
+      return { slides: [], totalProducts: 0 };
     }
 
-    return slides;
+    let totalProducts = 0;
+    const slides: CategoryProduct[][] = [];
+
+    // Pre-calculate total products for optimization
+    storeDetail.productCategories.forEach((category) => {
+      totalProducts += category.products?.length || 0;
+    });
+
+    // Estimate number of slides needed to prevent array resizing
+    const estimatedSlides = Math.ceil(totalProducts / 14);
+    slides.length = estimatedSlides;
+
+    let currentSlide: CategoryProduct[] = [];
+    let productsInCurrentSlide = 0;
+    let slideIndex = 0;
+
+    // O(n) complexity where n is the number of categories
+    for (const category of storeDetail.productCategories) {
+      if (!category.products?.length) continue;
+
+      let remainingProducts = [...category.products];
+      let isContinuation = category.isContinuation || false;
+
+      while (remainingProducts.length > 0) {
+        const availableSpace = 14 - productsInCurrentSlide;
+        const productsToTake = Math.min(
+          remainingProducts.length,
+          currentSlide.length < MAX_CATEGORIES_PER_SLIDE
+            ? PRODUCTS_PER_CATEGORY
+            : availableSpace
+        );
+
+        if (productsToTake <= 0) {
+          slides[slideIndex] = currentSlide;
+          currentSlide = [];
+          productsInCurrentSlide = 0;
+          slideIndex++;
+          continue;
+        }
+
+        const categorySlice: CategoryProduct = {
+          ...category,
+          products: remainingProducts.slice(0, productsToTake),
+          isContinuation,
+        };
+
+        currentSlide.push(categorySlice);
+        remainingProducts = remainingProducts.slice(productsToTake);
+        productsInCurrentSlide += productsToTake;
+        isContinuation = true;
+
+        if (
+          productsInCurrentSlide >= 14 ||
+          currentSlide.length >= MAX_CATEGORIES_PER_SLIDE
+        ) {
+          slides[slideIndex] = currentSlide;
+          currentSlide = [];
+          productsInCurrentSlide = 0;
+          slideIndex++;
+        }
+      }
+    }
+
+    // Add any remaining categories in the last slide
+    if (currentSlide.length > 0) {
+      slides[slideIndex] = currentSlide;
+    }
+
+    // Trim any empty slots we pre-allocated
+    return { slides: slides.filter(Boolean), totalProducts };
+  }, [storeDetail?.productCategories]);
+
+  // Optimize which slides are rendered based on current index
+  useEffect(() => {
+    const indices = [];
+    for (let i = -SLIDES_TO_PRELOAD; i <= SLIDES_TO_PRELOAD; i++) {
+      const index = currentSlideIndex + i;
+      if (index >= 0 && index < slides.length) {
+        indices.push(index);
+      }
+    }
+    setVisibleSlideIndices(indices);
+  }, [currentSlideIndex, slides.length]);
+
+  // Memoize slide change handler
+  const handleSlideChange = useCallback((index: number) => {
+    setCurrentSlideIndex(index);
+  }, []);
+
+  // Early return for empty data
+  if (!slides.length) return null;
+
+  const carouselStyles = {
+    root: { width: "100%" },
+    viewport: { height: "100%" },
+    container: { height: "100%" },
+    slide: { height: "100%", width: "100%" },
+    indicators: { bottom: "2rem" },
   };
 
   return (
@@ -97,13 +143,8 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
       align="start"
       controlSize={8}
       slidesToScroll={1}
-      styles={{
-        root: { width: "100%" },
-        viewport: { height: "100%" },
-        container: { height: "100%" },
-        slide: { height: "100%", width: "100%" },
-        indicators: { bottom: "2rem" },
-      }}
+      styles={carouselStyles}
+      onSlideChange={handleSlideChange}
       nextControlIcon={
         <IconArrowRight style={{ width: rem(16), height: rem(16) }} />
       }
@@ -111,13 +152,22 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: any }) => {
         <IconArrowLeft style={{ width: rem(16), height: rem(16) }} />
       }
     >
-      {prepareSlides().map((slideCategories, index) => (
-        <Carousel.Slide key={index}>
-          <MenuCard storeDetail={storeDetail} categories={slideCategories} />
-        </Carousel.Slide>
-      ))}
+      {slides.map((slideCategories, index) =>
+        // Only render slides that are visible or about to become visible
+        visibleSlideIndices.includes(index) ? (
+          <Carousel.Slide key={`slide-${index}`}>
+            <MenuCard storeDetail={storeDetail} categories={slideCategories} />
+          </Carousel.Slide>
+        ) : (
+          // Render empty placeholder for non-visible slides
+          <Carousel.Slide key={`slide-${index}`}>
+            <div style={{ height: "100%" }} />
+          </Carousel.Slide>
+        )
+      )}
     </Carousel>
   );
 };
 
-export default MenuCarousel;
+// Prevent unnecessary re-renders
+export default React.memo(MenuCarousel);
