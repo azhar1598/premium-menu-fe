@@ -7,7 +7,7 @@ function Credits() {
     <Flex gap={5} align="center" justify="center" bg={"black"} p={10}>
       <IconCopyright stroke={1} color="gray" size={15} />
       <Text bg={"black"} size="12px" color="white" ta={"center"} c={"gray"}>
-        Powered by Sourcestation
+        Powered by Storekode.com
       </Text>
     </Flex>
   );
