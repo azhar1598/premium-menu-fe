@@ -25,8 +25,14 @@ export const MenuCard = ({
 
         {categories.map((category: any, categoryIndex: number) => {
           // Determine if we should show only one image based on product count
-          const showSingleImage = category.products?.length < 14;
-          const imagesToShow = showSingleImage
+          const showMultipleImage =
+            category.images.length > 1
+              ? category.products.length < 8
+                ? false
+                : true
+              : false;
+
+          const imagesToShow = !showMultipleImage
             ? [category.images[0]]
             : category.images;
 
@@ -82,11 +88,13 @@ export const MenuCard = ({
                   {imagesToShow.map((image: any, imageIndex: number) => (
                     <div
                       key={imageIndex}
-                      className={`relative mt-4 h-[180px] ${
-                        showSingleImage ? "w-[130px]" : "w-[130px]"
+                      className={`relative mt-4 ${
+                        !showMultipleImage
+                          ? "w-[130px]  h-[180px]"
+                          : "w-[100px]  h-[60px] mt-6"
                       }`}
                     >
-                      {showSingleImage && (
+                      {!showMultipleImage && (
                         <div
                           className="absolute inset-0 -top-2 left-2 right-2 h-32 rounded-lg"
                           style={{
@@ -96,9 +104,9 @@ export const MenuCard = ({
                         />
                       )}
 
-                      {!showSingleImage && (
+                      {showMultipleImage && (
                         <div
-                          className="absolute inset-0 -top-2 left-2 right-2 h-32 rounded-lg"
+                          className="absolute inset-0 -top-1 left-2 right-3 h-20  rounded-lg"
                           style={{
                             backgroundColor:
                               storeDetail?.websiteTheme.primaryColor,
@@ -111,9 +119,9 @@ export const MenuCard = ({
                         className={`absolute ${
                           categoryIndex % 2 === 0 ? "pr-4" : "pl-4"
                         } rounded-lg object-cover ${
-                          showSingleImage
-                            ? "h-36 inset-0 "
-                            : "h-36 -  rounded-full"
+                          !showMultipleImage
+                            ? "h-32 inset-0 "
+                            : "h-20 -  rounded-full"
                         }`}
                         style={{ borderRadius: "10px" }}
                       />

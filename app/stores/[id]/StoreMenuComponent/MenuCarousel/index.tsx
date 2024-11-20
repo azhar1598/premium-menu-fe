@@ -3,6 +3,7 @@ import { Carousel } from "@mantine/carousel";
 import { rem } from "@mantine/core";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { MenuCard } from "./MenuCard";
+// import { storeDetail } from "@/lib/constants";
 
 interface Product {
   name: string;
@@ -22,7 +23,7 @@ interface StoreDetail {
 }
 
 const MAX_CATEGORIES_PER_SLIDE = 2;
-const PRODUCTS_PER_CATEGORY = 7;
+const PRODUCTS_PER_CATEGORY = 10;
 const SLIDES_TO_PRELOAD = 2; // Number of slides to preload in each direction
 
 const MenuCarousel = ({ storeDetail }: { storeDetail: StoreDetail }) => {
