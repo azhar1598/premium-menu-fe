@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Indicator, Stack } from "@mantine/core";
 import Image from "next/image";
 import MenuCarousel from "./MenuCarousel";
@@ -32,7 +32,12 @@ const isStoreOpen = (businessHours: any) => {
 };
 
 function StoreMenuComponent({ storeDetail }: any) {
-  const isOpen = isStoreOpen(storeDetail?.businessHours || []);
+  const [isOpen, setIsOpen] = useState<any>([]);
+
+  useEffect(() => {
+    if (!storeDetail) return;
+    setIsOpen(isStoreOpen(storeDetail?.businessHours));
+  }, [storeDetail]);
 
   return (
     <Stack>
