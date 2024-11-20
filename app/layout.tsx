@@ -22,6 +22,7 @@ import {
   Tangerine, // Clean, modern geometric
 } from "next/font/google";
 import { Notifications } from "@mantine/notifications";
+import GoogleAnalytics from "@/components/common/GAnalytics";
 
 const spaceGrotesk = Heebo({
   subsets: ["latin"],
@@ -39,9 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+
   return (
     <html lang="en">
       <body className={`${spaceGrotesk.className} antialiased `}>
+        <GoogleAnalytics />
         <QueryClientProvider client={queryClient}>
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />

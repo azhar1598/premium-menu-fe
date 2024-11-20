@@ -260,3 +260,5 @@ export const storeDetail = {
     },
   ],
 };
+
+export const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID;
