@@ -12,6 +12,9 @@ const nextConfig = {
       "storage.googleapis.com",
     ],
   },
+  env: {
+    GA_MEASUREMENT_ID: process.env.GA_MEASUREMENT_ID,
+  },
 };
 
 export default nextConfig;
