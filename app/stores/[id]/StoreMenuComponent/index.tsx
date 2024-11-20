@@ -1,14 +1,42 @@
 "use client";
-import { Indicator, Stack } from "@mantine/core";
 import React from "react";
+import { Indicator, Stack } from "@mantine/core";
 import Image from "next/image";
 import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
 
+const isStoreOpen = (businessHours: any) => {
+  const now = new Date();
+  const currentDay = now.toLocaleDateString("en-US", { weekday: "long" });
+  const currentTime = now.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const todayHours = businessHours.find(
+    (schedule: any) => schedule.day === currentDay
+  );
+
+  if (!todayHours) return false;
+
+  const openTime = todayHours.openTime;
+  const closeTime = todayHours.closeTime;
+
+  // Handle midnight closing time
+  if (closeTime === "00:00") {
+    return currentTime >= openTime || currentTime < closeTime;
+  }
+
+  return currentTime >= openTime && currentTime < closeTime;
+};
+
 function StoreMenuComponent({ storeDetail }: any) {
+  const isOpen = isStoreOpen(storeDetail?.businessHours || []);
+
   return (
     <Stack>
-      <div className=" max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat  bg-black/70  backdrop-blur-sm">
+      <div className="max-w-[400px] relative w-screen bg-center bg-cover bg-no-repeat bg-black/70 backdrop-blur-sm">
         <Image
           src={storeDetail?.websiteTheme?.backgroundImage || "/placeholder.jpg"}
           alt="Store Background"
@@ -21,10 +49,9 @@ function StoreMenuComponent({ storeDetail }: any) {
           <div className="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center z-[1000]">
             {!storeDetail?.logo ? (
               <span
-                className={`text-xl font-bold`}
+                className="text-xl font-bold"
                 style={{ color: storeDetail.websiteTheme.titleColor }}
               >
-                {" "}
                 {storeDetail?.name?.slice(0, 2).toUpperCase()}
               </span>
             ) : (
@@ -34,14 +61,18 @@ function StoreMenuComponent({ storeDetail }: any) {
                 width={100}
                 height={100}
                 style={{ borderRadius: "100px" }}
-                className="rouned-full"
+                className="rounded-full"
               />
             )}
           </div>
 
-          <Indicator color="green" position="top-end" processing>
+          <Indicator
+            color={isOpen ? "green" : "red"}
+            position="top-end"
+            processing={isOpen}
+          >
             <h1
-              className={`text-lg font-bold text-white px-2 `}
+              className="text-lg font-bold text-white px-2"
               style={{ color: storeDetail.websiteTheme.titleColor }}
             >
               {storeDetail?.name}
