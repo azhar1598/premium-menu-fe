@@ -6,29 +6,89 @@ import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
 
 const isStoreOpen = (businessHours: any) => {
+  // Get current date and time
   const now = new Date();
   const currentDay = now.toLocaleDateString("en-US", { weekday: "long" });
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  const yesterdayDay = yesterday.toLocaleDateString("en-US", {
+    weekday: "long",
+  });
+
   const currentTime = now.toLocaleTimeString("en-US", {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   });
 
+  // Get today's and yesterday's business hours
   const todayHours = businessHours.find(
     (schedule: any) => schedule.day === currentDay
+  );
+  const yesterdayHours = businessHours.find(
+    (schedule: any) => schedule.day === yesterdayDay
   );
 
   if (!todayHours) return false;
 
-  const openTime = todayHours.openTime;
-  const closeTime = todayHours.closeTime;
+  // Convert all times to minutes for easier comparison
+  const currentMinutes = timeToMinutes(currentTime);
+  const todayOpenMinutes = timeToMinutes(todayHours.openTime);
+  const todayCloseMinutes = timeToMinutes(todayHours.closeTime);
 
-  // Handle midnight closing time
-  if (closeTime === "00:00") {
-    return currentTime >= openTime || currentTime < closeTime;
+  // Case 1: Normal opening hours (e.g., 09:00-17:00)
+  if (todayCloseMinutes > todayOpenMinutes) {
+    return (
+      currentMinutes >= todayOpenMinutes && currentMinutes < todayCloseMinutes
+    );
   }
 
-  return currentTime >= openTime && currentTime < closeTime;
+  // Case 2: Overnight hours (e.g., 17:00-01:00)
+  // First check if we're before midnight
+  if (currentMinutes >= todayOpenMinutes) {
+    return true;
+  }
+
+  // Then check if we're after midnight but before closing
+  if (currentMinutes < todayCloseMinutes) {
+    // Make sure yesterday was also a business day
+    if (
+      yesterdayHours &&
+      timeToMinutes(yesterdayHours.openTime) <=
+        timeToMinutes(yesterdayHours.closeTime)
+    ) {
+      return false; // Yesterday had normal hours, so we're closed now
+    }
+    return true; // We're in the early hours before closing
+  }
+
+  // Case 3: Check if we're still in yesterday's overnight hours
+  if (
+    yesterdayHours &&
+    timeToMinutes(yesterdayHours.closeTime) <
+      timeToMinutes(yesterdayHours.openTime)
+  ) {
+    if (currentMinutes < timeToMinutes(yesterdayHours.closeTime)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+// Helper function to convert time string to minutes since midnight
+const timeToMinutes = (timeStr: string) => {
+  const [hours, minutes] = timeStr.split(":").map(Number);
+  return hours * 60 + minutes;
+};
+
+// Helper function to format minutes back to time string (for debugging)
+const minutesToTime = (minutes: any) => {
+  const hours = Math.floor(minutes / 60);
+  const mins = minutes % 60;
+  return `${hours.toString().padStart(2, "0")}:${mins
+    .toString()
+    .padStart(2, "0")}`;
 };
 
 function StoreMenuComponent({ storeDetail }: any) {
