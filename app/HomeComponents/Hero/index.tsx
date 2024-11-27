@@ -62,7 +62,7 @@ function Hero() {
   const [activeTab, setActiveTab] = useState("features");
 
   return (
-    <div className="relatidve py-16 lg:py-24 overflow-hidden">
+    <div className="relatidve py-4 lg:py-4 overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute top-16  inset-0 bg-contain bg-center opacit0 z-0"

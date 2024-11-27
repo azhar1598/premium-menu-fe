@@ -34,11 +34,11 @@ export const theme = createTheme({
     ],
   },
   components: {
-    Input: Input.extend({
-      classNames: {
-        input: classes.input,
-      },
-    }),
+    // Input: Input.extend({
+    //   classNames: {
+    //     input: classes.input,
+    //   },
+    // }),
 
     Textarea: Textarea.extend({
       classNames: {
@@ -48,13 +48,13 @@ export const theme = createTheme({
       },
     }),
 
-    TextInput: TextInput.extend({
-      classNames: {
-        input: classes.text_input,
-        label: classes.text_input_label,
-        required: "",
-      },
-    }),
+    // TextInput: TextInput.extend({
+    //   classNames: {
+    //     input: classes.text_input,
+    //     label: classes.text_input_label,
+    //     required: "",
+    //   },
+    // }),
     NumberInput: NumberInput.extend({
       classNames: {
         input: classes.number_input,

@@ -5,8 +5,12 @@ import Image from "next/image";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "mantine-datatable/styles.layer.css";
+import { theme } from "@/theme";
 
 import GoogleAnalytics from "@/components/common/GAnalytics";
+import Header from "./HomeComponents/Header";
+import Footer from "./HomeComponents/Footer/page";
+import { MantineProvider } from "@mantine/core";
 
 // Font configuration
 const heebo = Heebo({
@@ -108,7 +112,9 @@ export default function RootLayout({
       </head>
       <body className={`${heebo.className} antialiased`}>
         <GoogleAnalytics />
-        {children}
+        <MantineProvider theme={theme}>
+          <div className="min-h-screen">{children}</div>
+        </MantineProvider>
       </body>
     </html>
   );

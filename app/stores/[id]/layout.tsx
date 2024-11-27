@@ -1,7 +1,6 @@
 "use client";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Flex, MantineProvider, Stack } from "@mantine/core";
-import { theme } from "@/theme";
 import { queryClient } from "@/lib/queryClient";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
@@ -24,14 +23,12 @@ export default function RootLayout({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MantineProvider theme={theme}>
-        <Notifications position="top-center" />
-        <Provider store={store}>
-          <Flex align={"Flex-center"} justify={"center"} w={"100%"}>
-            <Stack>{children}</Stack>
-          </Flex>
-        </Provider>
-      </MantineProvider>
+      <Notifications position="top-center" />
+      <Provider store={store}>
+        <Flex align={"Flex-center"} justify={"center"} w={"100%"}>
+          <Stack>{children}</Stack>
+        </Flex>
+      </Provider>
     </QueryClientProvider>
   );
 }

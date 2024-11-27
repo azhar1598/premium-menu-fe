@@ -1,4 +1,6 @@
+"use client";
 import { IconQrcode } from "@tabler/icons-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 function Header() {
@@ -6,19 +8,40 @@ function Header() {
   return (
     <>
       {/* Mobile Navigation Toggle */}
-      <nav className="px-4 py-4 flex justify-between items-center shadow-sm bg-white lg:px-8">
-        <div className="flex items-center space-x-3">
-          <IconQrcode className="text-orange-600" size={32} />
-          <h1 className="text-2xl font-bold text-gray-800">Storekode</h1>
-        </div>
+      <nav className="px-4 py-2 flex justify-between lg:justify-around items-center shadow-sm bg-gray-900 lg:px-8 fixed top-0 w-full z-[1000]">
+        <Link href={"/"} className="flex flex-end space-x-1 cursor-pointer">
+          <IconQrcode className="text-white" size={32} />
+          <div>
+            <h1 className="text-lg font-bold text-gray-300 space-y-0 -mb-3">
+              Storekode
+            </h1>
+            <sub className="mx-6 text-gray-300">Innovation Inside</sub>
+          </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex space-x-4">
-          <button className="px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">
-            How It Works
-          </button>
-          <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition">
-            Get Started
+          <Link
+            href={"/services"}
+            className="px-4 py-2 text-gray-200 cursor-pointer  rounded-lg font-semibold text-xs"
+          >
+            Services
+          </Link>
+          <Link
+            href={"/about"}
+            className="px-4 py-2 text-gray-200 cursor-pointer  rounded-lg font-semibold text-xs"
+          >
+            About
+          </Link>
+          <Link
+            href={"/contact"}
+            className="px-4 py-2 text-gray-200 cursor-pointer rounded-lg font-semibold text-xs"
+          >
+            Contact
+          </Link>
+
+          <button className="px-2  bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-sm">
+            Book a Demo
           </button>
         </div>
 
