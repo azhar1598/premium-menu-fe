@@ -19,6 +19,7 @@ import Testimonials from "./HomeComponents/Testimonials";
 import Pricing from "./HomeComponents/Pricing";
 import GoodHands from "./HomeComponents/GoodHands";
 import Footer from "./HomeComponents/Footer/page";
+import BusinessTypes from "./HomeComponents/BusinessTypes";
 
 const StorekodeLandingPage = () => {
   return (
@@ -32,7 +33,7 @@ const StorekodeLandingPage = () => {
           <Benefits />
           <GoodHands />
           <Testimonials />
-
+          <BusinessTypes />
           <Pricing />
           {/* Pricing Section */}
         </main>
