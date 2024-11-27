@@ -1,8 +1,9 @@
 import React, { useMemo, useCallback, useState, useEffect } from "react";
 import { Carousel } from "@mantine/carousel";
-import { rem } from "@mantine/core";
+import { rem, Skeleton } from "@mantine/core";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { MenuCard } from "./MenuCard";
+import SkeletonLoader from "@/components/common/Loader";
 // import { storeDetail } from "@/lib/constants";
 
 interface Product {
@@ -162,7 +163,7 @@ const MenuCarousel = ({ storeDetail }: { storeDetail: StoreDetail }) => {
         ) : (
           // Render empty placeholder for non-visible slides
           <Carousel.Slide key={`slide-${index}`}>
-            <div style={{ height: "100%" }} />
+            <SkeletonLoader />
           </Carousel.Slide>
         )
       )}
