@@ -107,8 +107,10 @@ function StoreMenuComponent({ storeDetail }: any) {
           src={storeDetail?.websiteTheme?.backgroundImage || "/placeholder.jpg"}
           alt="Store Background"
           fill
+          // width={1000}
+          // height={1000}
           sizes="full"
-          style={{ objectFit: "cover" }}
+          // style={{  }}
           priority
         />
         <Stack align="center" pt={20}>

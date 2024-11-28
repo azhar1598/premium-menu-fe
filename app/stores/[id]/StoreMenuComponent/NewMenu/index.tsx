@@ -20,7 +20,7 @@ import classes from "./menucard.module.css";
 export const NewMenu = ({ storeDetail, productCategories }) => {
   console.log("categories", productCategories);
   return (
-    <Box className="min-h-[500px] bg-zinc/30 backdrop-blur-sm py-3 mx-1  text-white rounded-sm menssu-bg2 overflow-auto">
+    <Box className="min-h-[700px] bg-zinc/30 backdrop-blur-sm py-3 mx-1  text-white rounded-sm menssu-bg2 overflow-auto">
       <Box className="px">
         <Box className="text-center mb-8">
           <Text size="32px" fw={700}>
@@ -34,6 +34,7 @@ export const NewMenu = ({ storeDetail, productCategories }) => {
           classNames={{
             root: classes.root,
             list: classes.list,
+            tab: classes.tab,
           }}
         >
           <Tabs.List mb={28}>
@@ -58,9 +59,9 @@ export const NewMenu = ({ storeDetail, productCategories }) => {
             <Tabs.Panel
               key={index}
               value={category?.name.toLowerCase()}
-              bg={"zinc"}
+              //   bg={"zinc"}
             >
-              <Flex align={"flex-start"} justify={"space-between"} p={6}>
+              <Flex align={"flex-start"} justify={"space-between"} px={6}>
                 <Stack gap={5}>
                   <div
                     className="text-md inline-flex items-center py-2 rounded-md mb-4 px-3 ml-3"

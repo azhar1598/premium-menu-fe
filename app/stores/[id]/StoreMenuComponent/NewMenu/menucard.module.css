@@ -16,6 +16,10 @@
   scrollbar-width: none;
 }
 
+.tab:hover {
+  background-color: transparent !important;
+}
+
 &::-webkit-scrollbar {
   display: "none";
 }
