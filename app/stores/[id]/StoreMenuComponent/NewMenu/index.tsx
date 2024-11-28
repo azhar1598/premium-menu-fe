@@ -30,7 +30,7 @@ export const NewMenu = ({ storeDetail, productCategories }) => {
         <Tabs
           defaultValue={productCategories[0]?.name.toLowerCase()}
           //   variant="pills"
-          color="red"
+          color={storeDetail?.websiteTheme.primaryColor}
           classNames={{
             root: classes.root,
             list: classes.list,
