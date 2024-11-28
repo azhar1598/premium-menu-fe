@@ -55,20 +55,20 @@ export const theme = createTheme({
     //     required: "",
     //   },
     // }),
-    NumberInput: NumberInput.extend({
-      classNames: {
-        input: classes.number_input,
-        label: classes.number_input_label,
-        required: "",
-      },
-    }),
-    InputBase: InputBase.extend({
-      classNames: {
-        input: classes.input_base,
-        label: "",
-        required: "",
-      },
-    }),
+    // NumberInput: NumberInput.extend({
+    //   classNames: {
+    //     input: classes.number_input,
+    //     label: classes.number_input_label,
+    //     required: "",
+    //   },
+    // }),
+    // InputBase: InputBase.extend({
+    //   classNames: {
+    //     input: classes.input_base,
+    //     label: "",
+    //     required: "",
+    //   },
+    // }),
 
     Select: Select.extend({
       classNames: {
@@ -97,8 +97,8 @@ export const theme = createTheme({
       },
     }),
 
-    Button: Button.extend({
-      classNames: { root: classes.button },
-    }),
+    // Button: Button.extend({
+    //   classNames: { root: classes.button },
+    // }),
   },
 });

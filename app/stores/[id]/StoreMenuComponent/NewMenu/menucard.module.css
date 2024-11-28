@@ -1,0 +1,30 @@
+.list {
+  align-self: center;
+  align-content: center;
+  width: calc(5.5 * 4rem);
+  flex-wrap: nowrap !important;
+  overflow: scroll !important;
+  display: flex !important;
+
+  position: "sticky";
+  /* do */
+  /* backgroundColor: "inherit", */
+  z-index: 1;
+  /* padding-bottom: "8px"; */
+  /* border-bottom: 4px solid #ccc; */
+
+  scrollbar-width: none;
+}
+
+&::-webkit-scrollbar {
+  display: "none";
+}
+
+.tabs-list {
+  border-bottom-width: 10px !important;
+}
+
+.tabs-list-border-width {
+  border-bottom-width: 10px !important;
+  border: 20px solid red;
+}

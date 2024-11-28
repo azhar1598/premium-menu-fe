@@ -4,6 +4,7 @@ import { Indicator, Stack } from "@mantine/core";
 import Image from "next/image";
 import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
+import { NewMenu } from "./NewMenu";
 
 const isStoreOpen = (businessHours: any) => {
   // Get current date and time
@@ -151,7 +152,11 @@ function StoreMenuComponent({ storeDetail }: any) {
             {storeDetail?.tagLine}
           </p>
 
-          <MenuCarousel storeDetail={storeDetail} />
+          <NewMenu
+            storeDetail={storeDetail}
+            productCategories={storeDetail?.productCategories}
+          />
+          {/* <MenuCarousel storeDetail={storeDetail} /> */}
           <Footer storeDetail={storeDetail} />
         </Stack>
       </div>
