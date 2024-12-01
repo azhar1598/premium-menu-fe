@@ -18,7 +18,6 @@ import {
 import classes from "./menucard.module.css";
 
 export const NewMenu = ({ storeDetail, productCategories }) => {
-  console.log("categories", productCategories);
   return (
     <div className="w-full px-2">
       <Box className="bg-zinc/30 backdrop-blur-sm py-3   text-white rounded-sm menssu-bg2 overflow-y-scroll overflow-x-hidden">

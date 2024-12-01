@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Indicator, Stack } from "@mantine/core";
+import { Flex, Group, Indicator, Stack, Text } from "@mantine/core";
 import Image from "next/image";
 import MenuCarousel from "./MenuCarousel";
 import Footer from "@/components/common/Footer";
 import { NewMenu } from "./NewMenu";
+import { IconComet, IconStarFilled } from "@tabler/icons-react";
+import Link from "next/link";
 
 const isStoreOpen = (businessHours: any) => {
   // Get current date and time
@@ -153,6 +155,25 @@ function StoreMenuComponent({ storeDetail }: any) {
           >
             {storeDetail?.tagLine}
           </p>
+
+          <Link href={"#"}>
+            <Flex
+              className="rounded absolute top-3 right-3 px-2"
+              gap={2}
+              style={{
+                color: storeDetail.websiteTheme.taglineColor,
+                backgroundColor: storeDetail.websiteTheme.primaryColor,
+              }}
+              py={6}
+              align={"center"}
+              justify={"center"}
+            >
+              <Text className="text-white text-sm " size="12px">
+                RATE US
+              </Text>
+              <IconStarFilled size={12} color="gold" />
+            </Flex>
+          </Link>
 
           <NewMenu
             storeDetail={storeDetail}
