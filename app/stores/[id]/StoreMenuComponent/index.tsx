@@ -110,7 +110,7 @@ function StoreMenuComponent({ storeDetail }: any) {
           // width={1000}
           // height={1000}
           sizes="full"
-          // style={{  }}
+          // style={{}}
           priority
         />
         <Stack align="center" pt={20}>

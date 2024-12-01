@@ -20,6 +20,7 @@ import Pricing from "./HomeComponents/Pricing";
 import GoodHands from "./HomeComponents/GoodHands";
 import Footer from "./HomeComponents/Footer/page";
 import BusinessTypes from "./HomeComponents/BusinessTypes";
+import Hero2 from "./HomeComponents/Hero2";
 
 const StorekodeLandingPage = () => {
   return (
@@ -28,7 +29,7 @@ const StorekodeLandingPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex flex-col">
         {/* Hero Section */}
         <main className="container mx-auto px-4 py-12 lg:px-8 lg:py-16">
-          <Hero />
+          <Hero2 />
           {/* Benefits Section */}
           <Benefits />
           <GoodHands />

@@ -63,7 +63,6 @@ function Hero() {
 
   return (
     <div className="relatidve py-4 lg:py-4 overflow-hidden">
-      {/* Background Image */}
       <div
         className="absolute top-16  inset-0 bg-contain bg-center opacit0 z-0"
         style={{
@@ -71,10 +70,9 @@ function Hero() {
         }}
       ></div>
 
-      {/* Black Gradient Overlay (Only on Top) */}
-      <div className="absolute top-16 t inset-x-0 h-full bg-gradient-to-b from-black/100 to-black-100 z-[1]"></div>
+      <div className="absolute top-12 t inset-x-0 h-full bg-gradient-to-b from-black/100 to-black-100 z-[1]"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 mt-12">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl lg:text-5xl font-bold text-gray-200 mb-4 lg:mb-6 leading-tight">
             Revolutionize Your Store's Digital Presence
@@ -85,7 +83,6 @@ function Hero() {
           </p>
         </div>
 
-        {/* Tabs */}
         <div className="flex justify-center mb-8 lg:mb-12">
           <div className="bg-white rounded-full p-2 flex space-x-2 shadow-md">
             <button
@@ -111,7 +108,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Features Section */}
         {activeTab === "features" && (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
             {features.map((feature, index) => (
@@ -135,7 +131,6 @@ function Hero() {
           </div>
         )}
 
-        {/* How It Works Section */}
         {activeTab === "how-it-works" && (
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8">
             {howItWorks.map((step) => (
