@@ -264,6 +264,6 @@ export const storeDetail = {
 export const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID;
 
 export const BASE_URL =
-  process.env.NODE_ENV !== "development"
+  process.env.NODE_ENV == "development"
     ? process.env.NEXT_PUBLIC_API_DEV_URL
     : process.env.NEXT_PUBLIC_API_PROD_URL;

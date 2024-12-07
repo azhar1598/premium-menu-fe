@@ -10,6 +10,7 @@ const nextConfig = {
       "*.jpg",
       "marketplace.canva.com",
       "storage.googleapis.com",
+      "google.com",
     ],
   },
   env: {

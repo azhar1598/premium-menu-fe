@@ -168,7 +168,12 @@ function StoreMenuComponent({ storeDetail }: any) {
               align={"center"}
               justify={"center"}
             >
-              <Text className="text-white text-sm " size="12px">
+              <Text
+                className="text-white text-sm "
+                size="12px"
+                fw={700}
+                c={"white"}
+              >
                 RATE US
               </Text>
               <IconStarFilled size={12} color="gold" />

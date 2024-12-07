@@ -20,7 +20,7 @@ import classes from "./menucard.module.css";
 export const NewMenu = ({ storeDetail, productCategories }) => {
   return (
     <div className="w-full px-2">
-      <Box className="bg-zinc/30 backdrop-blur-sm py-3   text-white rounded-sm menssu-bg2 overflow-y-scroll overflow-x-hidden">
+      <Box className="bg-zinc/30 backdrop-blur-sm py-3   text-white rounded-sm menssu-bg2 overfsslow-y-scroll overflow-x-hidden">
         <Box className="px">
           <Box className="text-center mb-8">
             <Text size="32px" fw={700}>
