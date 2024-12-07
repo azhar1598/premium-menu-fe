@@ -1,5 +1,4 @@
 import ReviewMiddleware from "./ReviewMiddleware";
-import StoreMenuComponent from "./StoreMenuComponent";
 
 export default async function StorePage({ params }: any) {
   const { id } = await params;
