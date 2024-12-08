@@ -9,7 +9,7 @@ export default async function StorePage({ params }: any) {
 
 async function getReviewDetail(id: string) {
   const response = await fetch(
-    `https://digi-be.sourcestation.net/v1/public/stores/${id}`,
+    `https://digi-be.sourcestation.net/v1/public/google/stores/${id}`,
     {
       next: {
         revalidate: 60,

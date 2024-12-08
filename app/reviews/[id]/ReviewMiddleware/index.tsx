@@ -1,6 +1,19 @@
-import React from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 
 const ReviewMiddleware = ({ reviewDetail }: any) => {
+  console.log("reviewDetail", reviewDetail);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.location.href = `https://search.google.com/local/writereview?placeid=${reviewDetail?.googleReviewPid}`;
+    }, 1000);
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-4">
       <div className="relative flex flex-col items-center space-y-6 animate-pulse">
