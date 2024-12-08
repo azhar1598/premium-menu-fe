@@ -57,8 +57,8 @@ const ReviewMiddleware = ({ reviewDetail }: any) => {
 
   useEffect(() => {
     setTimeout(() => {
-      // window.location.href = `https://search.google.com/local/writereview?placeid=${reviewDetail?.googleReviewPid}`;
-    }, 1000);
+      window.location.href = `https://search.google.com/local/writereview?placeid=${reviewDetail?.googleReviewPid}`;
+    }, 3000);
   }, []);
 
   return (
