@@ -1,88 +1,87 @@
 "use client";
 import { IconQrcode } from "@tabler/icons-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 
 function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <>
-      {/* Mobile Navigation Toggle */}
-      <nav className="px-4 py-2 flex justify-between lg:justify-around items-center shadow-sm bg-gray-900 lg:px-8 fixed top-0 w-full z-[1000]">
+    <nav className="relative bg-white shadow-md sticky">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href={"/"} className="flex flex-end space-x-1 cursor-pointer">
-          <IconQrcode className="text-white" size={32} />
+          <IconQrcode className="text-gray" size={32} />
           <div>
-            <h1 className="text-lg font-bold text-gray-300 space-y-0 -mb-3">
+            <h1 className="text-lg font-bold text-gray-800 space-y-0 -mb-3">
               Storekode
             </h1>
-            <sub className="mx-6 text-gray-300">Innovation Inside</sub>
+            <sub className=" text-gray-700">Store creation made easy</sub>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <div className="hidden lg:flex space-x-4">
+        <div className="hidden md:flex space-x-4 items-center">
           <Link
-            href={"/services"}
-            className="px-4 py-2 text-gray-200 cursor-pointer  rounded-lg font-semibold text-xs"
+            href="/features"
+            className="text-gray-800 hover:text-blue-600 transition"
           >
-            Services
+            Features
           </Link>
           <Link
-            href={"/about"}
-            className="px-4 py-2 text-gray-200 cursor-pointer  rounded-lg font-semibold text-xs"
+            href="#"
+            className="text-gray-800 hover:text-blue-600 transition"
           >
-            About
+            How It Works
           </Link>
-          <Link
-            href={"/contact"}
-            className="px-4 py-2 text-gray-200 cursor-pointer rounded-lg font-semibold text-xs"
-          >
-            Contact
-          </Link>
-
-          <button className="px-2  bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition text-sm">
-            Book a Demo
+          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+            Get Started
           </button>
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="lg:hidden">
+        <div className="md:hidden">
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-gray-600 hover:text-orange-600"
+            onClick={toggleMenu}
+            className="text-gray-800 focus:outline-none"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Menu Dropdown */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white shadow-md">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            <button className="w-full text-left px-4 py-2 text-orange-600 hover:bg-orange-50 rounded-lg">
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
+          <div className="flex flex-col items-center py-4 space-y-4">
+            <a
+              href="#"
+              className="text-gray-800 hover:text-blue-600 transition"
+              onClick={toggleMenu}
+            >
+              Features
+            </a>
+            <a
+              href="#"
+              className="text-gray-800 hover:text-blue-600 transition"
+              onClick={toggleMenu}
+            >
               How It Works
-            </button>
-            <button className="w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition">
+            </a>
+            <button
+              className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+              onClick={toggleMenu}
+            >
               Get Started
             </button>
           </div>
         </div>
       )}
-    </>
+    </nav>
   );
 }
 
