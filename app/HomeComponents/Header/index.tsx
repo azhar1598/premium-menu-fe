@@ -12,7 +12,7 @@ function Header() {
   };
 
   return (
-    <nav className="relative bg-white shadow-md sticky">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href={"/"} className="flex flex-end space-x-1 cursor-pointer">
           <IconQrcode className="text-gray" size={32} />
@@ -20,7 +20,7 @@ function Header() {
             <h1 className="text-lg font-bold text-gray-800 space-y-0 -mb-3">
               Storekode
             </h1>
-            <sub className=" text-gray-700">Store creation made easy</sub>
+            <sub className="text-gray-700">Store creation made easy</sub>
           </div>
         </Link>
 
