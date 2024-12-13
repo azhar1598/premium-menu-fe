@@ -38,9 +38,12 @@ function Header() {
           >
             How It Works
           </Link>
-          <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">
+          <Link
+            href={"/contact"}
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+          >
             Get Started
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -58,26 +61,27 @@ function Header() {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg">
           <div className="flex flex-col items-center py-4 space-y-4">
-            <a
-              href="#"
+            <Link
+              href="/features"
               className="text-gray-800 hover:text-blue-600 transition"
               onClick={toggleMenu}
             >
               Features
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/how-it-works"
               className="text-gray-800 hover:text-blue-600 transition"
               onClick={toggleMenu}
             >
               How It Works
-            </a>
-            <button
+            </Link>
+            <Link
+              href={"/contact"}
               className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
               onClick={toggleMenu}
             >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
       )}

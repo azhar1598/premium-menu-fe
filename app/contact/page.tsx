@@ -52,7 +52,14 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <Container size={420} my={80} className="min-h-screen">
+      <header className="text-center py-20 px-4 bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+        <h1 className="text-5xl font-bold mb-4">Contact Us</h1>
+        <p className="text-xl mb-8">
+          Have questions or need assistance? We're here to help. Reach out to us
+          today!
+        </p>
+      </header>
+      <Container size={420} my={80}>
         <Paper withBorder shadow="md" p={30} radius="md">
           <Title ta="center" mb={20}>
             Contact Us

@@ -72,13 +72,13 @@ function Footer() {
                 Features
               </Link>
               <Link
-                href="#"
+                href="/contact"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Pricing
               </Link>
               <Link
-                href="#"
+                href="/contact"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Support
@@ -115,9 +115,11 @@ function Footer() {
           <div className="md:col-span-1">
             <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
             <div className="space-y-2 text-gray-600">
-              <p>Email: support@storekode.com</p>
+              <p>Email: sourcesta@gmail.com</p>
               <p>Phone: +91-8977835569</p>
-              <p>Address: 123 Digital St, Tech City</p>
+              <p>
+                Address: Block-8:709, LIG Flats, KPHB, Hyderabad, 500072, TG.{" "}
+              </p>
             </div>
           </div>
         </div>
