@@ -1,5 +1,6 @@
 import React from "react";
 import { Shirt, Watch, Utensils, Diamond, Laptop } from "lucide-react";
+import { IconTreadmill } from "@tabler/icons-react";
 
 const storeTypes = [
   { icon: <Shirt />, name: "Fashion" },
@@ -7,6 +8,7 @@ const storeTypes = [
   { icon: <Watch />, name: "Accessories" },
   { icon: <Laptop />, name: "Electronics" },
   { icon: <Utensils />, name: "Restaurants" },
+  { icon: <IconTreadmill />, name: "Fitness" },
 ];
 
 function Industries() {
