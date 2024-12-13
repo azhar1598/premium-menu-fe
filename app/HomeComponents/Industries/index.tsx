@@ -15,7 +15,7 @@ function Industries() {
   return (
     <section className="container mx-auto py-16 px-4 text-center">
       <h2 className="text-3xl font-bold mb-12">Stores for Every Industry</h2>
-      <div className="grid grid-cols-3 md:grid-cols-5 gap-6 justify-center items-center">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-6  ">
         {storeTypes.map((store, index) => (
           <div
             key={index}
