@@ -6,6 +6,7 @@ import Industries from "./HomeComponents/Industries";
 import Features from "./HomeComponents/Features";
 import Footer from "./HomeComponents/Footer/page";
 import Clients from "./HomeComponents/Clients";
+import Link from "next/link";
 
 const StoreKodeLandingPage = () => {
   return (
@@ -31,9 +32,12 @@ const StoreKodeLandingPage = () => {
         <p className="text-xl mb-8">
           No technical skills required. Launch your dream store in minutes.
         </p>
-        <button className="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-100">
+        <Link
+          href={"/contact"}
+          className="bg-white text-blue-700 px-8 py-4 rounded-full font-semibold hover:bg-gray-100"
+        >
           Get Started for Free
-        </button>
+        </Link>
       </section>
       <Footer />
       {/* Footer */}
