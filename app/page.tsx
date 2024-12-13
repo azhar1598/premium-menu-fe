@@ -25,7 +25,7 @@ const StoreKodeLandingPage = () => {
       {/* Features */}
 
       {/* Call to Action */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-20">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-20 px-5">
         <h2 className="text-4xl font-bold mb-6">
           Start Your Digital Store Journey Today
         </h2>
