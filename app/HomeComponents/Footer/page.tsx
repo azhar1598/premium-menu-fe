@@ -28,30 +28,30 @@ function Footer() {
 
             {/* Social Media Icons */}
             <div className="flex space-x-4">
-              <a
+              {/* <Link
                 href="#"
                 className="text-gray-500 hover:text-blue-600 transition"
               >
                 <Facebook size={24} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-500 hover:text-blue-600 transition"
               >
                 <Twitter size={24} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-500 hover:text-blue-600 transition"
               >
                 <Instagram size={24} />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="text-gray-500 hover:text-blue-600 transition"
               >
                 <Linkedin size={24} />
-              </a>
+              </Link> */}
             </div>
           </div>
 
@@ -59,30 +59,30 @@ function Footer() {
           <div className="md:col-span-1">
             <h4 className="font-semibold text-gray-800 mb-4">Quick Links</h4>
             <div className="space-y-2">
-              <a
+              <Link
                 href="#"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Home
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Features
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Pricing
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Support
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -90,24 +90,24 @@ function Footer() {
           <div className="md:col-span-1">
             <h4 className="font-semibold text-gray-800 mb-4">Legal</h4>
             <div className="space-y-2">
-              <a
-                href="#"
+              <Link
+                href="/terms-of-service"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Terms of Service
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/privacy-policy"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/cookie-policy"
                 className="block text-gray-600 hover:text-blue-600 transition"
               >
                 Cookie Policy
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -116,7 +116,7 @@ function Footer() {
             <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
             <div className="space-y-2 text-gray-600">
               <p>Email: support@storekode.com</p>
-              <p>Phone: +1 (555) 123-4567</p>
+              <p>Phone: +91-8977835569</p>
               <p>Address: 123 Digital St, Tech City</p>
             </div>
           </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import "./globals.css";
 import "@mantine/core/styles.css";
 import "mantine-datatable/styles.layer.css";
+import "@mantine/carousel/styles.css";
 import { theme } from "@/theme";
 
 import GoogleAnalytics from "@/components/common/GAnalytics";

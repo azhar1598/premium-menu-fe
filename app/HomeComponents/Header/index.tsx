@@ -33,7 +33,7 @@ function Header() {
             Features
           </Link>
           <Link
-            href="#"
+            href="/how-it-works"
             className="text-gray-800 hover:text-blue-600 transition"
           >
             How It Works

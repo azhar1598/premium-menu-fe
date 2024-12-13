@@ -5,6 +5,7 @@ import Hero from "./HomeComponents/Hero";
 import Industries from "./HomeComponents/Industries";
 import Features from "./HomeComponents/Features";
 import Footer from "./HomeComponents/Footer/page";
+import Clients from "./HomeComponents/Clients";
 
 const StoreKodeLandingPage = () => {
   return (
@@ -12,8 +13,9 @@ const StoreKodeLandingPage = () => {
       {/* Navigation */}
       <Header />
       <Hero />
-      <Industries />
       <Features />
+      <Clients />
+      <Industries />
 
       {/* Hero Section */}
 
