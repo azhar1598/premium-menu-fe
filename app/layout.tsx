@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     "instant store info",
     "customer engagement",
     "store discovery",
+    "storecode",
+    "storecode.com",
+    "storekode",
   ],
   openGraph: {
     title: "Storekode - Instant Store Information for Any Industry",
