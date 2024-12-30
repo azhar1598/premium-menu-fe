@@ -118,7 +118,8 @@ function Footer() {
               <p>Email: sourcesta@gmail.com</p>
               <p>Phone: +91-8977835569</p>
               <p>
-                Address: Block-8:709, LIG Flats, KPHB, Hyderabad, 500072, TG.{" "}
+                Address: Block-8:709, VR Nagar, Near Mindspace, Hyderabad,
+                500081, TG.{" "}
               </p>
             </div>
           </div>
