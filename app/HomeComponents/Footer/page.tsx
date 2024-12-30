@@ -116,7 +116,7 @@ function Footer() {
             <h4 className="font-semibold text-gray-800 mb-4">Contact</h4>
             <div className="space-y-2 text-gray-600">
               <p>Email: sourcesta@gmail.com</p>
-              <p>Phone: +91-8977835569</p>
+              <p>Phone: +91-7386169080</p>
               <p>
                 Address: Block-8:709, VR Nagar, Near Mindspace, Hyderabad,
                 500081, TG.{" "}
