@@ -20,9 +20,12 @@ function Hero() {
       <p className="text-xl mb-8">
         Create, Manage, and Grow Your Online Store Across All Industries
       </p>
-      <button className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100">
+      <Link
+        href="/contact"
+        className="bg-white text-blue-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100"
+      >
         Create Your Store Now
-      </button>
+      </Link>
     </header>
   );
 }
