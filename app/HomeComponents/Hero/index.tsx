@@ -12,6 +12,7 @@ import {
   IconShare2,
   IconShoppingBag,
 } from "@tabler/icons-react";
+import Link from "next/link";
 
 function Hero() {
   return (
