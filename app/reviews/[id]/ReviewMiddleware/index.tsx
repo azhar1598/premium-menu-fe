@@ -8,7 +8,7 @@ import Image from "next/image";
 const StarRating = ({ rating = 4.5 }) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
-
+  // this is from mock data previous commit
   return (
     <div className="flex items-center justify-center space-x-1">
       {[...Array(5)].map((_, index) => (
