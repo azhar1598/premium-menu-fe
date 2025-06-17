@@ -1,3 +1,4 @@
+import { storeDetail as mockStoreDetails } from "../../../lib/apiMockData";
 import StoreMenuComponent from "./StoreMenuComponent";
 
 export default async function StorePage({ params }: any) {
@@ -8,17 +9,19 @@ export default async function StorePage({ params }: any) {
 }
 
 async function getStoreDetail(id: string) {
-  const response = await fetch(
-    `https://digi-be.sourcestation.net/v1/public/stores/${id}`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
-  );
+  // const response = await fetch(
+  //   `https://digi-be.sourcestation.net/v1/public/stores/${id}`,
+  //   {
+  //     next: {
+  //       revalidate: 60,
+  //     },
+  //   }
+  // );
 
-  if (!response.ok) {
-    throw new Error("Failed to fetch store");
-  }
-  return response.json();
+  // if (!response.ok) {
+  //   throw new Error("Failed to fetch store");
+  // }
+  // return response.json();
+  const store = mockStoreDetails.find((s) => s.id === id);
+  return { data: store };
 }
